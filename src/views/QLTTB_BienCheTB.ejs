@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danh sách nhân viên | Quản trị Admin</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="../doc/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- or -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
+</head>
+
+<body onload="time()" class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header">
+        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+            aria-label="Hide Sidebar"></a>
+        <!-- Navbar Right Menu-->
+        <ul class="app-nav">
+
+
+            <!-- User Menu-->
+            <li><a class="app-nav__item" href="/login"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+
+            </li>
+        </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+        <div class="app-sidebar__user"><img class="app-sidebar__user-avatar"
+                src="/images/—Pngtree—flat default avatar_5927630.png" width="50px" alt="User Image">
+            <div>
+                <p class="app-sidebar__user-name" style="margin-bottom: 10px;"><b>
+                        <%= tenCanBo%>
+                    </b></p>
+                <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
+            </div>
+        </div>
+        <hr>
+        <ul class="app-menu">
+            <div>
+                <li><a class="app-menu__item" href="/"><i class='app-menu__icon bx bx-tachometer'></i><span
+                            class="app-menu__label">Bảng điều khiển</span></a></li>
+            </div>
+            <div>
+                <li><a class="app-menu__item " href="/dsDonVi"><i class='app-menu__icon bx bx-cog'></i><span
+                            class="app-menu__label">Quản lý tổ chức</span></a></li>
+            </div>
+            <div>
+                <li><a class="app-menu__item dropbtn" onclick="myFunction1()"><i
+                            class='app-menu__icon bx bx-id-card'></i>
+                        <span class="app-menu__label">Quản lý học viên</span></a>
+                    <div id="myDropdown1" class="dropdown-content">
+                        <a href="/QLHVtheoKhoaHoc" class="app-menu__item app-menu__label"><i class='bx bx-caret-right'
+                                style="margin: 0px 10px;"></i>Theo khóa học</a>
+                        <a href="/QLHVtheoDonVi" class="app-menu__item app-menu__label"><i class='bx bx-caret-right'
+                                style="margin: 0px 10px;"></i>Theo đơn vị</a>
+                    </div>
+                </li>
+            </div>
+            <div>
+                <li><a class="app-menu__item active" href="/QLTTB"><i class='app-menu__icon bx bx-cog'></i><span
+                            class="app-menu__label">Quản lý trang thiết bị</span></a></li>
+                </li>
+            </div>
+
+            <div>
+                <li><a class="app-menu__item dropbtn" onclick="myFunction3()"><i
+                            class='app-menu__icon bx bx-id-card'></i>
+                        <span class="app-menu__label">Kế hoạch huấn luyện</span></a>
+                    <div id="myDropdown3" class="dropdown-content">
+                        <a href="/ChuongTrinhHuanLuyen" class="app-menu__item app-menu__label"><i
+                                class='bx bx-caret-right' style="margin: 0px 10px;"></i>Chương trình huấn luyện</a>
+                        <a href="#home" class="app-menu__item app-menu__label"><i class='bx bx-caret-right'
+                                style="margin: 0px 10px;"></i>KHHL của đại đội</a>
+                        <a href="#home" class="app-menu__item app-menu__label"><i class='bx bx-caret-right'
+                                style="margin: 0px 10px;"></i>KHHL của tiểu đoàn</a>
+                        <a href="/KHHLTrungDoan" class="app-menu__item app-menu__label"><i class='bx bx-caret-right'
+                                style="margin: 0px 10px;"></i>KHHL của trung đoàn</a>
+                    </div>
+                </li>
+            </div>
+            <div>
+                <li><a class="app-menu__item " href="/KetQuaHuanLuyen"><i class='app-menu__icon bx bx-id-card'></i>
+                        <span class="app-menu__label">Kết quả huấn luyện</span></a></li>
+            </div>
+            <div>
+                <li><a class="app-menu__item" href="table-data-money.html"><i
+                            class='app-menu__icon bx bx-dollar'></i><span class="app-menu__label">Quản trị người
+                            dùng</span></a></li>
+            </div>
+            <div>
+                <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-cog'></i><span
+                            class="app-menu__label">Cài
+                            đặt hệ thống</span></a></li>
+            </div>
+        </ul>
+    </aside>
+    <main class="app-content">
+        <div class="app-title">
+            <ul class="app-breadcrumb breadcrumb side">
+                <li class="breadcrumb-item active"><a href="/QLTTB"><b>Quản lý trang thiết bị </b></a>
+                </li>
+                <li class="breadcrumb-item active"><a href=""><b>
+                            <%= tenDV%>
+                        </b></a></li>
+
+            </ul>
+            <div id="clock"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="tile-body">
+                        <div class="row element-button">
+                            <div class="col-sm-2">
+                                <a class="btn btn-add btn-sm" data-toggle="modal"
+                                    data-target="#exampleModalCenter"><b><i class="fas fa-folder-plus"></i> Thêm biên
+                                        chế
+                                    </b></a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập"
+                                    onclick="myFunction(this)"><i class="fas fa-file-upload"></i> Tải từ file</a>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <a class="btn btn-delete btn-sm print-file" type="button" title="In"
+                                    onclick="myApp.printTable()"><i class="fas fa-print"></i> In dữ liệu</a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button"
+                                    title="Sao chép"><i class="fas fa-copy"></i> Sao chép</a>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i>
+                                    Xuất Excel</a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="btn btn-delete btn-sm pdf-file" type="button" title="In"
+                                    onclick="myFunction(this)"><i class="fas fa-file-pdf"></i> Xuất PDF</a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
+                                        class="fas fa-trash-alt"></i> Xóa tất cả </a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="dataTables_length" id="sampleTable_length"
+                                    style="display: flex; margin-top: 10px ;">
+                                    <label style="width: 10%;margin-top: 5px;">Hiển thị</label>
+                                    <select name="sampleTable_length" aria-controls="sampleTable"
+                                        class="form-control form-control-sm" style="width: 15%;">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                    <label style="width: 15%;margin-left: 4px;margin-top: 5px;">danh mục</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div id="sampleTable_filter" class="dataTables_filter" style="display: flex;"><label
+                                        style="width: 15%;margin-top: 15px;">Tìm
+                                        kiếm:</label><input type="search" class="form-control form-control-sm"
+                                        placeholder="" aria-controls="sampleTable"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table table-hover table-bordered" id="sampleTable">
+                                <thead>
+
+                                    <tr>
+                                        <th width="10">STT</th>
+                                        <th>Mã học viên</th>
+                                        <th>Tên học viên</th>
+                                        <th>Đơn vị</th>
+                                        <th>Môn học</th>
+                                        <th>Số hiệu trang bị</th>
+                                        <th>Thời gian nhận biên chế</th>
+                                        <th>Trạng thái</th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (let i=0; i< dataBienChe.length; i++) { %>
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                <%= i+1 %>
+                                            </td>
+                                            <td>
+                                                <%= dataBienChe[i].id_HV%>
+                                            </td>
+                                            <td>
+                                                <%= dataBienChe[i].tenHV%>
+                                            </td>
+                                            <td>
+                                                <%= dataBienChe[i].tenDV%>
+                                            </td>
+                                            <td>
+                                                <%= dataBienChe[i].tenMonHoc%>
+                                            </td>
+                                            <td>
+                                                <%= dataBienChe[i].id_TTB%>
+                                            </td>
+                                            <td>
+                                                <%= dataBienChe[i].thoiGianNhanTTB%>
+                                            </td>
+                                            <td>
+                                                <% let trangThai='' ; %>
+                                                    <% let valuetrangThai='' ; %>
+                                                        <% if (dataBienChe[i].trangThai==1) { %>
+                                                            <% trangThai='Đang biên chế' ; %>
+                                                                <% valuetrangThai='1' ; %>
+                                                                    <% } else { %>
+                                                                        <% trangThai='Kết thúc biên chế' ; %>
+                                                                            <% valuetrangThai='0' ; %>
+                                                                                <% } %>
+                                                                                    <%=trangThai%>
+                                            </td>
+
+                                            <td style="display: flex;">
+                                                <a class="btn btn-primary btn-sm infobtn" type="button" title="chi tiết"
+                                                    onclick="myFunction(this)" href=""><i class="fas fa-info"></i>
+                                                </a>
+
+                                                <input type="text" hidden name="idDVdelete" value="">
+                                                <button class="btn btn-primary btn-sm trash" type="submit" title="Xóa"
+                                                    onclick="deleteRow('<%= dataBienChe[i].id_HV%>','<%= dataBienChe[i].tenMonHoc%>')"
+                                                    style="margin-left:5px; margin-right: 5px;"><i
+                                                        class="fas fa-trash-alt"></i>
+                                                </button>
+
+                                                <button class="btn btn-primary btn-sm edit" type="button"
+                                                    onclick="openEditModal('<%= dataBienChe[i].id_HV%>','<%= dataBienChe[i].tenHV%>','<%= dataBienChe[i].tenDV%>','<%= dataBienChe[i].tenMonHoc%>','<%= dataBienChe[i].id_TTB%>','<%= dataBienChe[i].thoiGianNhanTTB%>','<%=valuetrangThai%>')"
+                                                    title="Sửa" id="show-emp" data-toggle="modal"
+                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info" id="sampleTable_info" role="status" aria-live="polite">Hiện
+                                    1 đến 10 của 16
+                                    danh mục</div>
+                            </div>
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="sampleTable_paginate"
+                                    style="margin-left: 430px;">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled"
+                                            id="sampleTable_previous"><a href="#" aria-controls="sampleTable"
+                                                data-dt-idx="0" tabindex="0" class="page-link">Lùi</a></li>
+                                        <li class="paginate_button page-item active"><a href="#"
+                                                aria-controls="sampleTable" data-dt-idx="1" tabindex="0"
+                                                class="page-link">1</a></li>
+                                        <li class="paginate_button page-item "><a href="#" aria-controls="sampleTable"
+                                                data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                                        <li class="paginate_button page-item next" id="sampleTable_next"><a href="#"
+                                                aria-controls="sampleTable" data-dt-idx="3" tabindex="0"
+                                                class="page-link">Tiếp</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <!--
+  MODAL
+-->
+    <!--
+  MODAL
+-->
+    <div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+        data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: -70px;">
+            <div class="modal-content">
+                <form action="/updateBienCheTTB/<%= idDV%>" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group  col-md-12">
+                                <span class="thong-tin-thanh-toan">
+                                    <h5>Chỉnh sửa thông tin biên chế trang thiết bị</h5>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Mã học viên </label>
+                                <input class="form-control" type="text" value="" name="id_HVupdate" readonly>
+                            </div>
+                            <div class="form-group  col-md-12">
+                                <label class="control-label">Tên học viên</label>
+                                <input class="form-control" type="text" value="" name="tenHVupdate" readonly>
+                            </div>
+                            <div class="form-group  col-md-12">
+                                <label class="control-label">Đơn vị</label>
+                                <input class="form-control" type="text" value="" name="tenDVupdate" readonly>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Môn học</label>
+                                <input class="form-control" type="text" value="" name="tenMonHocupdate" readonly>
+
+                            </div>
+                            <div class="form-group  col-md-12">
+                                <label class="control-label">Số hiệu trang bị</label>
+                                <input class="form-control" type="text" value="" name="id_TTBupdate" readonly>
+                                <!-- <select class="form-control" id="exampleSelect2" name="id_TTBupdate" required>
+                                    <% for (let i=0; i<TTBchuaBienChe.length; i++) { %>
+                                        <option>
+                                            <%= TTBchuaBienChe[i].id_TTB%>
+                                        </option>
+                                        <% } %>
+                                </select> -->
+                            </div>
+                            <div class="form-group  col-md-12">
+                                <label class="control-label">Thời gian nhận</label>
+                                <input class="form-control" type="date" value="" name="thoiGianNhanupdate">
+                            </div>
+                            <div class="form-group  col-md-12">
+                                <label class="control-label">Trạng thái</label>
+                                <select class="form-control" id="exampleSelect2" name="trangThaiupdate" required>
+                                    <option value="1">Đang biên chế</option>
+                                    <option value="0">Kết thúc biên chế</option>
+                                </select>
+                            </div>
+
+                            <BR>
+                            <button class="btn btn-save" style="margin: 0px 10px;" type="submit">Lưu lại</button>
+                            <a class="btn btn-cancel" style="margin: 0px;" data-dismiss="modal" href="#">Hủy bỏ</a>
+                            <BR>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+MODAL
+-->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: -50px;">
+            <div class="modal-content">
+                <form action="/createBienCheTTB/<%= idDV%>" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group  col-md-12">
+                                <span class="thong-tin-thanh-toan">
+                                    <h5>Thêm biên chế trang bị cho học viên</h5>
+                                </span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Nhập mã học viên </label>
+                                <!-- <input class="form-control" type="text" value="" name="id_ChungLoaiupdate"> -->
+                                <select class="form-control" id="exampleSelect2" name="id_HV">
+                                    <option>--Chọn mã học viên--</option>
+                                    <% for(let i=0; i<HVchuaBienChe.length; i++) { %>
+                                        <option>
+                                            <%= HVchuaBienChe[i].id_HV%>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Môn học</label>
+                                <!-- <input class="form-control" type="text" value="" name="tenChungLoaiupdate"> -->
+                                <select class="form-control" id="exampleSelect2" name="id_monHoc" required>
+                                    <option>--Chọn môn học--</option>
+                                    <% for (let i=0; i<MonHoc.length; i++) { %>
+                                        <option value="<%= MonHoc[i].id_monHoc%>">
+                                            <%= MonHoc[i].tenMonHoc%>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                            <div class="form-group  col-md-12">
+                                <label class="control-label">Số hiệu trang bị</label>
+                                <!-- <input class="form-control" type="number" value="" name="giaCaupdate"> -->
+                                <select class="form-control" id="exampleSelect2" name="id_TTB" required>
+                                    <% for (let i=0; i<TTBchuaBienChe.length; i++) { %>
+                                        <option>
+                                            <%= TTBchuaBienChe[i].id_TTB%>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                            <div class="form-group  col-md-12">
+                                <label class="control-label">Thời gian nhận</label>
+                                <input class="form-control" type="date" value="" name="thoiGianNhan">
+                            </div>
+                            <div class="form-group  col-md-12">
+                                <label class="control-label">Trạng thái</label>
+                                <input class="form-control" type="text" placeholder="Đang biên chế"
+                                    value="Đang biên chế" name="trangThai">
+                                <!-- <select class="form-control" id="exampleSelect2" name="trangThai" required>
+                                    <option value="1">Đang biên chế</option>
+                                    <option value="0">Kết thúc biên chế</option>
+                                </select> -->
+                            </div>
+                        </div>
+                        <BR>
+                        <button class="btn btn-save" type="submit">Lưu lại</button>
+                        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+                        <BR>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../doc/js/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../doc/js/popper.min.js"></script>
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <!--===============================================================================================-->
+    <script src="../doc/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../doc/js/main.js"></script>
+    <!--===============================================================================================-->
+    <script src="../doc/js/plugins/pace.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="../doc/js/plugins/chart.js"></script>
+    <script src="../"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript">
+        //Thời Gian
+        function time() {
+            var today = new Date();
+            var weekday = new Array(7);
+            weekday[0] = "Chủ Nhật";
+            weekday[1] = "Thứ Hai";
+            weekday[2] = "Thứ Ba";
+            weekday[3] = "Thứ Tư";
+            weekday[4] = "Thứ Năm";
+            weekday[5] = "Thứ Sáu";
+            weekday[6] = "Thứ Bảy";
+            var day = weekday[today.getDay()];
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            nowTime = h + " giờ " + m + " phút " + s + " giây";
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+            tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+                '</span>';
+            document.getElementById("clock").innerHTML = tmp;
+            clocktime = setTimeout("time()", "1000", "Javascript");
+
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
+            }
+        }
+    </script>
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction1() {
+            document.getElementById("myDropdown1").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction2() {
+            document.getElementById("myDropdown2").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction3() {
+            document.getElementById("myDropdown3").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        function openEditModal(id, tenHV, donVi, monHoc, TTB, thoiGian, trangThai) {
+            var datePartsTGN = thoiGian.split("/");
+            var formattedTGN = datePartsTGN[2] + "-" + datePartsTGN[1] + "-" + datePartsTGN[0];
+
+            // Điền thông tin vào các ô input trong modal
+            document.querySelector('#ModalUP [name="id_HVupdate"]').value = id;
+            document.querySelector('#ModalUP [name="tenHVupdate"]').value = tenHV;
+            document.querySelector('#ModalUP [name="tenDVupdate"]').value = donVi;
+            document.querySelector('#ModalUP [name="tenMonHocupdate"]').value = monHoc;
+            document.querySelector('#ModalUP [name="id_TTBupdate"]').value = TTB;
+            document.querySelector('#ModalUP [name="thoiGianNhanupdate"]').value = formattedTGN;
+            document.querySelector('#ModalUP [name="trangThaiupdate"]').value = trangThai;
+
+            // Hiển thị modal
+            $('#ModalUP').modal('show');
+        }
+    </script>
+    <script>
+        function deleteRow(id_HV, tenMonHoc) {
+
+
+            // Hiển thị cảnh báo
+            swal({
+                title: "Cảnh báo",
+                text: "Bạn có chắc chắn muốn xóa sản phẩm này?",
+                buttons: ["Hủy bỏ", "Đồng ý"],
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        // Nếu người dùng chọn Đồng ý, thực hiện Ajax request
+                        sendDeleteRequest(id_HV, tenMonHoc);
+                        // location.reload();
+                    }
+                });
+        }
+
+        function sendDeleteRequest(data1, data2) {
+            // Thực hiện Ajax request để gửi thông tin đến server
+            $.ajax({
+                url: '/deleteBienCheTTB',  // Đường dẫn của API hoặc endpoint xử lý xóa
+                type: 'POST',             // Phương thức HTTP
+                data: { id_HV: data1, tenMonHoc: data2 },  // Thông tin cần gửi đến server (có thể là rowIndex hoặc thông tin khác)
+                success: function (response) {
+                    // Xử lý phản hồi từ server (nếu cần)
+                    console.log(response);
+
+                    // Sau khi xóa thành công, có thể cập nhật UI hoặc làm gì đó khác
+
+                    location.reload();
+                },
+                error: function (error) {
+                    console.error('Error during delete request:', error);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
