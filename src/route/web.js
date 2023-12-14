@@ -6,9 +6,9 @@ let router = express.Router();
 const initWebRoute = (app) => {
     router.get('/login', homeController.getLogin);
     router.post('/login', homeController.login);
-
+    //quyền nào cũng dc
     router.get('/', homeController.getHomepage);
-
+    //quyền 2
     router.get('/trungdoan/:id_DV', homeController.getDetailTrungDoan);
     router.post('/create-d-thuoc-e', homeController.createDthuocE);
     router.post('/updateDVCoBand', homeController.updateDVCoBand);
@@ -42,8 +42,7 @@ const initWebRoute = (app) => {
     router.post('/updateHVtheoDonVi/:id_DV', homeController.updateHVtheoDonVi);
     router.post('/deleteHVtheoDonVi', homeController.deleteHVtheoDonVi);
 
-    router.get('/formCreateCB/:id_DV', homeController.getFormCreateCB);
-
+    //quyền 3
     router.get('/QLTTB', homeController.getdsTrungDoan);
     router.get('/QLTTB-ChungLoai/:id_DV', homeController.getdsChungLoai);
     router.post('/createChungLoai/:id_DV', homeController.createChungLoai);
@@ -58,7 +57,7 @@ const initWebRoute = (app) => {
     router.post('/createBienCheTTB/:id_DV', homeController.createBienCheTTB);
     router.post('/updateBienCheTTB/:id_DV', homeController.updateBienCheTTB);
     router.post('/deleteBienCheTTB', homeController.deleteBienCheTTB);
-
+    //quyền 1
     router.get('/ChuongTrinhHuanLuyen', homeController.getdsMonHoc);
     router.post('/createMonHoc', homeController.createMonHoc);
     router.post('/updateMonHoc', homeController.updateMonHoc);
@@ -69,10 +68,12 @@ const initWebRoute = (app) => {
     router.post('/createNDBH/:id_monHoc/:id_baiHoc', homeController.createNDBH);
     router.post('/updateNDBH/:id_monHoc/:id_baiHoc', homeController.updateNDBH);
 
-    router.get('/KHHLTrungDoan', homeController.getKHHLTrungDoan);
+    // router.get('/KHHLTrungDoan', homeController.getKHHLTrungDoan);
+    router.get('/KHHLTrungDoan', homeController.getKHHLdsTrungDoan);
+    router.get('/KHHLTrungDoan/:id_DV', homeController.getKHHLTrungDoan)
 
     // router.get('/KHHLTrungDoan', homeController.getdsDaiDoi);
-
+    // quyền 4
     router.get('/KetQuaHuanLuyen', homeController.getKQHL);
     router.get('/DonVi/:id_monHoc', homeController.getdsDonVitheoMonHoc);
     router.get('/NhapDiem/:id_monHoc/:id_DV', homeController.getNhapDiem);

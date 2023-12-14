@@ -39,35 +39,36 @@ function validate() {
 
 
         }
-        //Nếu không nhập gì mà nhấn đăng nhập thì sẽ báo lỗi
-        else if (username == "" || password == "") {
-            swal({
-                title: "",
-                text: "Bạn chưa điền đầy đủ thông tin đăng nhập...",
-                icon: "error",
-                close: true,
-                button: "Thử lại",
-            });
+    }
+    //Nếu không nhập gì mà nhấn đăng nhập thì sẽ báo lỗi
+    if (username == "" || password == "") {
+        swal({
+            title: "",
+            text: "Bạn chưa điền đầy đủ thông tin đăng nhập...",
+            icon: "error",
+            close: true,
+            button: "Thử lại",
+        });
 
-            return false;
+        return false;
 
-        }
-
-        else {
-            swal({
-                title: "",
-                text: "Sai thông tin đăng nhập hãy kiểm tra lại...",
-                icon: "error",
-                close: true,
-                button: "Thử lại",
-            });
-            return true;
-        };
     }
 
-    //Đặt 1 Admin ảo để đăng nhập quản trị
-
+    else {
+        swal({
+            title: "",
+            text: "Sai thông tin đăng nhập hãy kiểm tra lại...",
+            icon: "error",
+            close: true,
+            button: "Thử lại",
+        });
+        return true;
+    };
 }
+
+//Đặt 1 Admin ảo để đăng nhập quản trị
+
+
 
 function RegexEmail(emailInputBox) {
     var emailStr = document.getElementById(emailInputBox).value;

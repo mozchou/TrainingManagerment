@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="../../doc/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../doc/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -21,76 +21,6 @@
 </head>
 
 <body onload="time()" class="app sidebar-mini rtl">
-    <style>
-        .Choicefile {
-            display: block;
-            background: #14142B;
-            border: 1px solid #fff;
-            color: #fff;
-            width: 150px;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            padding: 5px 0px;
-            border-radius: 5px;
-            font-weight: 500;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .Choicefile:hover {
-            text-decoration: none;
-            color: white;
-        }
-
-        #uploadfile,
-        .removeimg {
-            display: none;
-        }
-
-        #thumbbox {
-            position: relative;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .removeimg {
-            height: 25px;
-            position: absolute;
-            background-repeat: no-repeat;
-            top: 5px;
-            left: 5px;
-            background-size: 25px;
-            width: 25px;
-            /* border: 3px solid red; */
-            border-radius: 50%;
-
-        }
-
-        .removeimg::before {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            content: '';
-            border: 1px solid red;
-            background: red;
-            text-align: center;
-            display: block;
-            margin-top: 11px;
-            transform: rotate(45deg);
-        }
-
-        .removeimg::after {
-            /* color: #FFF; */
-            /* background-color: #DC403B; */
-            content: '';
-            background: red;
-            border: 1px solid red;
-            text-align: center;
-            display: block;
-            transform: rotate(-45deg);
-            margin-top: -2px;
-        }
-    </style>
     <!-- Navbar-->
     <header class="app-header">
         <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
@@ -120,7 +50,7 @@
         <hr>
         <ul class="app-menu">
             <div>
-                <li><a class="app-menu__item active" href="/"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item " href="/"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều
                             khiển</span></a></li>
             </div>
@@ -153,7 +83,7 @@
             </div>
 
             <div>
-                <li><a class="app-menu__item dropbtn" onclick="myFunction3()"><i
+                <li><a class="app-menu__item active dropbtn" onclick="myFunction3()"><i
                             class='app-menu__icon bx bx-id-card'></i>
                         <span class="app-menu__label">Kế hoạch huấn luyện</span></a>
                     <div id="myDropdown3" class="dropdown-content">
@@ -190,9 +120,7 @@
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
-                <li class="breadcrumb-item active"><a href="#"><b>Danh sách đơn vị thuộc tiểu đoàn <span>
-                                <%= dvCapTren%>
-                            </span></b></a></li>
+                <li class="breadcrumb-item active"><a href="#"><b>Kế hoạch huấn luyện trung đoàn</b></a></li>
             </ul>
             <div id="clock"></div>
         </div>
@@ -200,40 +128,6 @@
             <div class="col-md-12">
                 <div class="tile">
                     <div class="tile-body">
-                        <div class="row element-button">
-                            <div class="col-sm-2">
-
-                                <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#exampleModalCenter"
-                                    title="Thêm"><i class="fas fa-plus"></i>
-                                    Tạo mới đơn vị</a>
-                            </div>
-                            <div class="col-sm-2">
-                                <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập"
-                                    onclick="myFunction(this)"><i class="fas fa-file-upload"></i> Tải từ file</a>
-                            </div>
-
-                            <div class="col-sm-2">
-                                <a class="btn btn-delete btn-sm print-file" type="button" title="In"
-                                    onclick="myApp.printTable()"><i class="fas fa-print"></i> In dữ liệu</a>
-                            </div>
-                            <div class="col-sm-2">
-                                <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button"
-                                    title="Sao chép"><i class="fas fa-copy"></i> Sao chép</a>
-                            </div>
-
-                            <div class="col-sm-2">
-                                <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i>
-                                    Xuất Excel</a>
-                            </div>
-                            <div class="col-sm-2">
-                                <a class="btn btn-delete btn-sm pdf-file" type="button" title="In"
-                                    onclick="myFunction(this)"><i class="fas fa-file-pdf"></i> Xuất PDF</a>
-                            </div>
-                            <div class="col-sm-2">
-                                <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                        class="fas fa-trash-alt"></i> Xóa tất cả </a>
-                            </div>
-                        </div>
                         <div class="row" style="margin-bottom: 10px;">
                             <div class="col-sm-12 col-md-6">
                                 <div class="dataTables_length" id="sampleTable_length"
@@ -259,8 +153,9 @@
                         <div class="row">
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
+
                                     <tr>
-                                        <th width="10"><input type="checkbox" id="all"></th>
+                                        <th width="10">STT</th>
                                         <th>Tên đơn vị</th>
                                         <th>Mã đơn vị</th>
                                         <th>Cấp đơn vị</th>
@@ -269,36 +164,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% for(let i=0; i < dataDV.length; i++) { %>
+                                    <% for (let i=0; i< dataDV.length; i++) { %>
                                         <tr>
-                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                            <td>
-                                                <%= dataDV[i].tenDV %>
+                                            <td style="text-align: center;">
+                                                <%= i + 1%>
                                             </td>
                                             <td>
-                                                <%= dataDV[i].id_DV %>
+                                                <%= dataDV[i].tenDV%>
                                             </td>
                                             <td>
-                                                <%= dataDV[i].tenCapDV %>
+                                                <%= dataDV[i].id_DV%>
                                             </td>
                                             <td>
-                                                <%= dataDV[i].moTa %>
+                                                <%= dataDV[i].tenCapDV%>
                                             </td>
-                                            <!-- href="/trungdoan/tieudoan/<%= dataDV[i].id_DV %>" -->
+                                            <td>
+                                                <%= dataDV[i].moTa%>
+                                            </td>
                                             <td style="display: flex;">
-                                                <button class="btn btn-primary btn-sm trash" type="submit" title="Xóa"
-                                                    onclick="deleteRow('<%= dataDV[i].id_DV %>')"
-                                                    style="margin-left: 5px; margin-right: 5px;"><i
-                                                        class="fas fa-trash-alt"></i>
-                                                </button>
-                                                <button class="btn btn-primary btn-sm edit" type="button"
-                                                    onclick="openEditModal('<%= dataDV[i].id_DV %>','<%= dataDV[i].tenDV %>','<%= dataDV[i].tenCapDV %>','<%= dataDV[i].moTa %>')"
-                                                    title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
+                                                <a class="btn btn-sm btn-primary" style="margin-right: 10px;"
+                                                    href="/KHHLTrungDoan/<%= dataDV[i].id_DV%>">Chi tiết</a>
                                             </td>
                                         </tr>
-
                                         <% } %>
                                 </tbody>
                             </table>
@@ -342,147 +229,21 @@
     <!--
   MODAL
 -->
-    <div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-        data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form action="/updateDVCoBanc" method="post">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="form-group  col-md-12">
-                                <span class="thong-tin-thanh-toan">
-                                    <h5>Chỉnh sửa thông tin đơn vị</h5>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Mã đơn vị:</label>
-                            <input class="form-control" type="text" name="id_updateDV" readonly>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Tên đơn vị:</label>
-                            <input class="form-control" type="text" name="tenDVupdate" required>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Cấp đơn vị:</label>
-                            <input class="form-control" type="text" name="capDVupdate" readonly>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Mô tả đơn vị:</label>
-                            <input class="form-control" type="text" name="moTaupdate" required>
-                        </div>
 
-                        <BR>
-                        <BR>
-                        <button class="btn btn-save" type="submit">Lưu lại</button>
-                        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                        <BR>
-                    </div>
-                </form>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--
-MODAL
--->
-
-    <!--
-  MODAL
--->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form action="/create-c-thuoc-d" method="post">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="form-group  col-md-12">
-                                <span class="thong-tin-thanh-toan">
-                                    <h5>Tạo mới đơn vị</h5>
-                                </span>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Nhập mã đơn vị mới:</label>
-                                <input class="form-control" type="text" name="id_newDV" required>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Nhập tên đơn vị mới:</label>
-                                <input class="form-control" type="text" name="tenDV" required>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Nhập mô tả đơn vị:</label>
-                                <input class="form-control" type="text" name="moTa" required>
-                            </div>
-                        </div>
-                        <BR>
-                        <button class="btn btn-save" type="submit">Lưu lại</button>
-                        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                        <BR>
-                    </div>
-                </form>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--
-MODAL
--->
-    <script src="../../doc/js/jquery-3.2.1.min.js"></script>
+    <script src="../doc/js/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
-    <script src="../../doc/js/popper.min.js"></script>
+    <script src="../doc/js/popper.min.js"></script>
     <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
     <!--===============================================================================================-->
-    <script src="../../doc/js/bootstrap.min.js"></script>
+    <script src="../doc/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
-    <script src="../../doc/js/main.js"></script>
+    <script src="../doc/js/main.js"></script>
     <!--===============================================================================================-->
-    <script src="../../doc/js/plugins/pace.min.js"></script>
+    <script src="../doc/js/plugins/pace.min.js"></script>
     <!--===============================================================================================-->
-    <script type="text/javascript" src="../../doc/js/plugins/chart.js"></script>
+    <script type="text/javascript" src="../doc/js/plugins/chart.js"></script>
+    <script src="../"></script>
     <!--===============================================================================================-->
-    <script>
-
-        function readURL(input, thumbimage) {
-            if (input.files && input.files[0]) { //Sử dụng  cho Firefox - chrome
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $("#thumbimage").attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-            else { // Sử dụng cho IE
-                $("#thumbimage").attr('src', input.value);
-
-            }
-            $("#thumbimage").show();
-            $('.filename').text($("#uploadfile").val());
-            $('.Choicefile').css('background', '#14142B');
-            $('.Choicefile').css('cursor', 'default');
-            $(".removeimg").show();
-            $(".Choicefile").unbind('click');
-
-        }
-        $(document).ready(function () {
-            $(".Choicefile").bind('click', function () {
-                $("#uploadfile").click();
-
-            });
-            $(".removeimg").click(function () {
-                $("#thumbimage").attr('src', '').hide();
-                $("#myfileupload").html('<input type="file" id="uploadfile"  onchange="readURL(this);" />');
-                $(".removeimg").hide();
-                $(".Choicefile").bind('click', function () {
-                    $("#uploadfile").click();
-                });
-                $('.Choicefile').css('background', '#14142B');
-                $('.Choicefile').css('cursor', 'pointer');
-                $(".filename").text("");
-            });
-        })
-    </script>
     <script type="text/javascript">
         //Thời Gian
         function time() {
@@ -607,57 +368,6 @@ MODAL
                     }
                 }
             }
-        }
-    </script>
-    <script>
-        function openEditModal(id, tenDV, capDV, moTa) {
-            // Điền thông tin vào các ô input trong modal
-            document.querySelector('#ModalUP [name="id_updateDV"]').value = id;
-            document.querySelector('#ModalUP [name="tenDVupdate"]').value = tenDV;
-            document.querySelector('#ModalUP [name="capDVupdate"]').value = capDV;
-            document.querySelector('#ModalUP [name="moTaupdate"]').value = moTa;
-
-            // Hiển thị modal
-            $('#ModalUP').modal('show');
-        }
-    </script>
-    <script>
-        function deleteRow(id_DV) {
-
-
-            // Hiển thị cảnh báo
-            swal({
-                title: "Cảnh báo",
-                text: "Bạn có chắc chắn muốn xóa đơn vị này không?",
-                buttons: ["Hủy bỏ", "Đồng ý"],
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        // Nếu người dùng chọn Đồng ý, thực hiện Ajax request
-                        sendDeleteRequest(id_DV);
-                        // location.reload();
-                    }
-                });
-        }
-
-        function sendDeleteRequest(id_DV) {
-            // Thực hiện Ajax request để gửi thông tin đến server
-            $.ajax({
-                url: '/deleteDVTT-c',  // Đường dẫn của API hoặc endpoint xử lý xóa
-                type: 'POST',             // Phương thức HTTP
-                data: { id_DV: id_DV },  // Thông tin cần gửi đến server (có thể là rowIndex hoặc thông tin khác)
-                success: function (response) {
-                    // Xử lý phản hồi từ server (nếu cần)
-                    console.log(response);
-
-                    // Sau khi xóa thành công, có thể cập nhật UI hoặc làm gì đó khác
-
-                    location.reload();
-                },
-                error: function (error) {
-                    console.error('Error during delete request:', error);
-                }
-            });
         }
     </script>
     <script>
@@ -786,7 +496,6 @@ MODAL
             else if (quyenTK == 5) {
                 window.location.href = destination;
             }
-
             else {
                 // Nếu không có đủ quyền, có thể hiển thị thông báo hoặc thực hiện hành động khác
                 // alert('Bạn không có quyền truy cập');

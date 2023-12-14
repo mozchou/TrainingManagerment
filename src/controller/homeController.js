@@ -34,13 +34,14 @@ let login = (req, res) => {
 
 let getHomepage = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         const capDV = 3;
         console.log(username);
         await sql.connect(dbConfig);
         var sqlrequest = new sql.Request();
         let result = await sqlrequest.query(`exec DonViTheoCap @capDV = ${capDV}`);
         let User = await sqlrequest.query(`exec getCBtheoUsername @username = N'${username}'`);
+
         // Đóng kết nối
         await sql.close();
         data = result.recordsets[0];
@@ -49,8 +50,12 @@ let getHomepage = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
-        return res.render('index.ejs', { dataDV: data, tenCanBo: tenCanBo })
+
+
+        return res.render('index.ejs', { dataDV: data, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -59,7 +64,7 @@ let getHomepage = async (req, res) => {
 
 let getDetailTrungDoan = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         dvCapTren = await req.params.id_DV;
         await sql.connect(dbConfig);
         var sqlrequest = new sql.Request();
@@ -73,9 +78,11 @@ let getDetailTrungDoan = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
-        return res.render('detailTrungDoan.ejs', { dataDV: data, dvCapTren: dvCapTren, tenCanBo: tenCanBo })
+        return res.render('detailTrungDoan.ejs', { dataDV: data, dvCapTren: dvCapTren, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -145,7 +152,7 @@ let deleteDVTTd = async (req, res) => {
 
 let getDetailTieuDoan = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         dvCapTren = await req.params.id_DV;
         await sql.connect(dbConfig);
 
@@ -160,10 +167,12 @@ let getDetailTieuDoan = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
 
-        return res.render('detailTieuDoan.ejs', { dataDV: data, dvCapTren: dvCapTren, tenCB: tenCanBo, idCB: idCanBo, tenCanBo: tenCanBo })
+        return res.render('detailTieuDoan.ejs', { dataDV: data, dvCapTren: dvCapTren, tenCB: tenCanBo, idCB: idCanBo, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -235,7 +244,7 @@ let deleteDVTTc = async (req, res) => {
 
 let getdsDV = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         let datacapDV;
         console.log(username);
         await sql.connect(dbConfig);
@@ -254,8 +263,10 @@ let getdsDV = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
-        return res.render('dsDonVi.ejs', { dataDV: data, dataCapDV: datacapDV, tenCanBo: tenCanBo })
+        return res.render('dsDonVi.ejs', { dataDV: data, dataCapDV: datacapDV, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -336,7 +347,7 @@ let deleteDV = async (req, res) => {
 
 let getdsCB = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         let loaiCB;
         let DV;
         let id_DV = req.params.id_DV;
@@ -355,11 +366,13 @@ let getdsCB = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
         loaiCB = dataloaiCB.recordsets[0];
         DV = dataDV.recordsets[0];
-        return res.render('dsCanBo.ejs', { dataCB: data, idDV: id_DV, dataLoaiCB: loaiCB, dataDV: DV, tenCanBo: tenCanBo })
+        return res.render('dsCanBo.ejs', { dataCB: data, idDV: id_DV, dataLoaiCB: loaiCB, dataDV: DV, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -432,35 +445,9 @@ let deleteCanBo = async (req, res) => {
     res.json({ success: true, message: 'Xóa thành công' });
 }
 
-let getFormCreateCB = async (req, res) => {
-    try {
-        let tenDV;
-        let capDV;
-        let id_DV = req.params.id_DV;
-        await sql.connect(dbConfig);
-
-        var sqlrequest = new sql.Request();
-        let result = await sqlrequest.query(`exec getDV_CapDV`);
-
-        // Đóng kết nối
-        await sql.close();
-        // Truy cập recordsets để lấy giá trị mong muốn
-        // Ở đây giả sử bạn muốn lấy giá trị của recordset thứ 2
-        tenDV = result.recordsets[0];
-        capDV = result.recordsets[1];
-        console.log(tenDV);
-        console.log(capDV);
-
-        return res.render('formCreateCB.ejs', { dataDV: tenDV, dataCapDV: capDV, idDV: id_DV, tenCB: tenCanBo, idCB: idCanBo });
-    } catch (err) {
-        console.log(err);
-        return res.status(500).send('Internal Server Error');
-    }
-};
-
 let getdsKhoaHoc = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         await sql.connect(dbConfig);
 
         var sqlrequest = new sql.Request();
@@ -474,10 +461,12 @@ let getdsKhoaHoc = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
 
-        return res.render('QLHVtheoKhoaHoc.ejs', { dataKH: data, tenCanBo: tenCanBo })
+        return res.render('QLHVtheoKhoaHoc.ejs', { dataKH: data, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -546,7 +535,7 @@ let deleteKhoaHoc = async (req, res) => {
 
 let getdsHVtheoKhoaHoc = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         let dataDV;
         let dataKhoaHoc;
         let idKhoaHoc = req.params.idKhoaHoc;
@@ -567,12 +556,14 @@ let getdsHVtheoKhoaHoc = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
 
         data = result.recordsets[0];
         dataDV = dsDV.recordsets[0];
         dataKhoaHoc = KhoaHoc.recordsets[0];
-        return res.render('dsHVtheoKhoaHoc.ejs', { dataHV: data, idKhoaHoc: idKhoaHoc, dataDV: dataDV, dataKhoaHoc: dataKhoaHoc, tenCanBo: tenCanBo })
+        return res.render('dsHVtheoKhoaHoc.ejs', { dataHV: data, idKhoaHoc: idKhoaHoc, dataDV: dataDV, dataKhoaHoc: dataKhoaHoc, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -631,7 +622,7 @@ let updateHVtheoKhoaHoc = async (req, res) => {
 
 let getdsDaiDoi = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         const capDV = 1;
         await sql.connect(dbConfig);
 
@@ -646,10 +637,12 @@ let getdsDaiDoi = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
 
-        return res.render('QLHVtheoDonVi.ejs', { dataDV: data, tenCanBo: tenCanBo })
+        return res.render('QLHVtheoDonVi.ejs', { dataDV: data, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -658,7 +651,7 @@ let getdsDaiDoi = async (req, res) => {
 
 let getdsHVtheoDonVi = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         let dataKhoaHoc;
         let dataDV;
         let idDV = req.params.id_DV;
@@ -678,13 +671,15 @@ let getdsHVtheoDonVi = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
 
         data = result.recordsets[0];
         dataKhoaHoc = KhoaHoc.recordsets[0];
 
         dataDV = DonVi.recordsets[0];
-        return res.render('dsHVtheoDonVi.ejs', { dataHV: data, idDV: idDV, dataKhoaHoc: dataKhoaHoc, dataDV: dataDV, tenCanBo: tenCanBo })
+        return res.render('dsHVtheoDonVi.ejs', { dataHV: data, idDV: idDV, dataKhoaHoc: dataKhoaHoc, dataDV: dataDV, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -776,7 +771,7 @@ let deleteHVtheoDonVi = async (req, res) => {
 
 let getdsTrungDoan = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         await sql.connect(dbConfig);
 
         var sqlrequest = new sql.Request();
@@ -790,10 +785,12 @@ let getdsTrungDoan = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
 
-        return res.render('QLTTB_dsTrungDoan.ejs', { dataDVTD: data, tenCanBo: tenCanBo })
+        return res.render('QLTTB_dsTrungDoan.ejs', { dataDVTD: data, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -802,7 +799,7 @@ let getdsTrungDoan = async (req, res) => {
 
 let getdsChungLoai = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         let idDV = req.params.id_DV;
         await sql.connect(dbConfig);
 
@@ -817,10 +814,12 @@ let getdsChungLoai = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
 
-        return res.render('QLTTB_ChungLoai.ejs', { dataLoaiTTB: data, tenCanBo: tenCanBo, idDV: idDV })
+        return res.render('QLTTB_ChungLoai.ejs', { dataLoaiTTB: data, tenCanBo: tenCanBo, idDV: idDV, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -892,7 +891,7 @@ let deleteChungLoai = async (req, res) => {
 
 let getdsTTB = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         let idDV = req.params.id_DV;
         let id_chungLoai = req.params.id_chungLoai;
         let tenDV, tenLoaiTTB;
@@ -912,6 +911,8 @@ let getdsTTB = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
         let tenDVArr = DV.recordsets[0];
@@ -927,7 +928,7 @@ let getdsTTB = async (req, res) => {
         // // console.log(idMonHoc);
         // console.log(tenBaiHoc);
 
-        return res.render('QLTTB_TrangBi.ejs', { dataTTB: data, tenCanBo: tenCanBo, tenDV: tenDV, idDV: idDV, tenLoaiTTB: tenLoaiTTB, id_chungLoai: id_chungLoai, id_chungLoai: id_chungLoai })
+        return res.render('QLTTB_TrangBi.ejs', { dataTTB: data, tenCanBo: tenCanBo, tenDV: tenDV, idDV: idDV, tenLoaiTTB: tenLoaiTTB, id_chungLoai: id_chungLoai, id_chungLoai: id_chungLoai, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -1003,7 +1004,7 @@ let deleteTTB = async (req, res) => {
 
 let getdsBienChe = async (req, res) => {
     try {
-        let data, TTBchuaBienChe, HVchuaBienChe, MonHoc;
+        let data, TTBchuaBienChe, HVchuaBienChe, MonHoc, quyenTK, id_capDV;
         let idDV = req.params.id_DV;
         let tenDV;
         await sql.connect(dbConfig);
@@ -1023,6 +1024,8 @@ let getdsBienChe = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
         TTBchuaBienChe = dsTTBchuaBienChe.recordsets[0];
@@ -1033,7 +1036,7 @@ let getdsBienChe = async (req, res) => {
             tenDV = tenDVArr[0].tenDV;
         }
 
-        return res.render('QLTTB_BienCheTB.ejs', { dataBienChe: data, tenCanBo: tenCanBo, idDV: idDV, tenDV: tenDV, TTBchuaBienChe: TTBchuaBienChe, HVchuaBienChe: HVchuaBienChe, MonHoc: MonHoc })
+        return res.render('QLTTB_BienCheTB.ejs', { dataBienChe: data, tenCanBo: tenCanBo, idDV: idDV, tenDV: tenDV, TTBchuaBienChe: TTBchuaBienChe, HVchuaBienChe: HVchuaBienChe, MonHoc: MonHoc, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -1118,7 +1121,7 @@ let deleteBienCheTTB = async (req, res) => {
 
 let getdsMonHoc = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         await sql.connect(dbConfig);
 
         var sqlrequest = new sql.Request();
@@ -1132,10 +1135,12 @@ let getdsMonHoc = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
 
-        return res.render('dsMonHoc.ejs', { dataMH: data, tenCanBo: tenCanBo })
+        return res.render('dsMonHoc.ejs', { dataMH: data, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -1186,7 +1191,7 @@ let updateMonHoc = async (req, res) => {
 
 let getdsBaiHoc = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         let idMonHoc = req.params.id_monHoc;
         let tenMonHoc;
 
@@ -1204,6 +1209,8 @@ let getdsBaiHoc = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
         let tenMHArr = tenMH.recordsets[0];
@@ -1213,7 +1220,7 @@ let getdsBaiHoc = async (req, res) => {
         console.log(idMonHoc);
         console.log(tenMonHoc);
 
-        return res.render('dsBaiHoc.ejs', { dataBH: data, tenMonHoc: tenMonHoc, idMonHoc: idMonHoc, tenCanBo: tenCanBo })
+        return res.render('dsBaiHoc.ejs', { dataBH: data, tenMonHoc: tenMonHoc, idMonHoc: idMonHoc, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -1262,7 +1269,7 @@ let updateBaiHoc = async (req, res) => {
 
 let getdsNDBH = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         let idMonHoc = req.params.id_monHoc;
         let idBaiHoc = req.params.id_baiHoc;
         let tenMonHoc;
@@ -1282,6 +1289,8 @@ let getdsNDBH = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
         let tenMHArr = tenMH.recordsets[0];
@@ -1297,7 +1306,7 @@ let getdsNDBH = async (req, res) => {
         // console.log(idMonHoc);
         console.log(tenBaiHoc);
 
-        return res.render('dsNoiDungBaiHoc.ejs', { dataNDBH: data, tenMonHoc: tenMonHoc, tenBaiHoc: tenBaiHoc, idMonHoc: idMonHoc, idBaiHoc: idBaiHoc, tenCanBo: tenCanBo })
+        return res.render('dsNoiDungBaiHoc.ejs', { dataNDBH: data, tenMonHoc: tenMonHoc, tenBaiHoc: tenBaiHoc, idMonHoc: idMonHoc, idBaiHoc: idBaiHoc, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -1348,14 +1357,14 @@ let updateNDBH = async (req, res) => {
     }
 }
 
-let getKHHLTrungDoan = async (req, res) => {
+let getKHHLdsTrungDoan = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         // const capDV = 1;
         await sql.connect(dbConfig);
 
         var sqlrequest = new sql.Request();
-        // let result = await sqlrequest.query(`exec DonViTheoCap @capDV = ${capDV}`);
+        let result = await sqlrequest.query(`exec DonViTheoCap @capDV = 3;`);
         // // Đóng kết nối
         // await sql.close();
         // data = result.recordsets[0];
@@ -1367,9 +1376,52 @@ let getKHHLTrungDoan = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
+        data = result.recordsets[0];
 
-        return res.render('KHHLTrungDoan.ejs', { dataDV: data, tenCanBo: tenCanBo })
+        return res.render('KHHL_dsTrungDoan.ejs', { dataDV: data, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send('Internal Server Error');
+    }
+}
+
+let getKHHLTrungDoan = async (req, res) => {
+    try {
+        let data, quyenTK, id_capDV, tenDV;
+        let idDV = req.params.id_DV;
+        // const capDV = 1;
+        await sql.connect(dbConfig);
+
+        var sqlrequest = new sql.Request();
+        let result = await sqlrequest.query(`exec getKHHLTrungDoan @idDV = '${idDV}'`);
+        let DonVi = await sqlrequest.query(`select tenDV from DonVi where id_DV='${idDV}'`);
+        let DonViThucHien = await sqlrequest.query(`exec getDonViThucHien @idDV='${idDV}'`);
+        let MonHoc = await sqlrequest.query(`exec getMonHockhongKHHL @idDV='${idDV}'`);
+        let NguoiDay = await sqlrequest.query(`select * from Canbo where id_DV = '${idDV}' and id_LoaiCB = 'LCB4'`);
+        let User = await sqlrequest.query(`exec getCBtheoUsername @username = N'${username}'`);
+        // Đóng kết nối
+        await sql.close();
+        let tenCanBo, idCanBo;
+        let dataUser = User.recordsets[0];
+        if (dataUser.length > 0) {
+            tenCanBo = dataUser[0].tenCB;
+            idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
+        }
+        data = result.recordsets[0];
+        let DonViArr = DonVi.recordsets[0];
+        if (DonViArr.length > 0) {
+            tenDV = DonViArr[0].tenDV;
+        }
+        let listDVTT = DonViThucHien.recordsets[0];
+        let listMonHoc = MonHoc.recordsets[0];
+        let listNguoiDay = NguoiDay.recordsets[0];
+
+        return res.render('KHHLTrungDoan.ejs', { dataKHHL: data, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV, tenDV: tenDV, listDVTT: listDVTT, listMonHoc: listMonHoc, listNguoiDay: listNguoiDay })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -1378,7 +1430,7 @@ let getKHHLTrungDoan = async (req, res) => {
 
 let getKQHL = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         await sql.connect(dbConfig);
 
         var sqlrequest = new sql.Request();
@@ -1392,10 +1444,12 @@ let getKQHL = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
 
-        return res.render('KetQuaHuanLuyen.ejs', { dataMH: data, tenCanBo: tenCanBo })
+        return res.render('KetQuaHuanLuyen.ejs', { dataMH: data, tenCanBo: tenCanBo, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -1404,7 +1458,7 @@ let getKQHL = async (req, res) => {
 
 let getdsDonVitheoMonHoc = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         let id_monHoc = req.params.id_monHoc;
         await sql.connect(dbConfig);
         let tenMonHoc;
@@ -1421,6 +1475,8 @@ let getdsDonVitheoMonHoc = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
         let MonHocArr = MonHoc.recordsets[0];
@@ -1428,7 +1484,7 @@ let getdsDonVitheoMonHoc = async (req, res) => {
             tenMonHoc = MonHocArr[0].tenMonHoc;
         }
 
-        return res.render('KQHL_dsDonVi.ejs', { dataDV: data, tenCanBo: tenCanBo, id_monHoc: id_monHoc, tenMonHoc: tenMonHoc })
+        return res.render('KQHL_dsDonVi.ejs', { dataDV: data, tenCanBo: tenCanBo, id_monHoc: id_monHoc, tenMonHoc: tenMonHoc, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -1437,7 +1493,7 @@ let getdsDonVitheoMonHoc = async (req, res) => {
 
 let getNhapDiem = async (req, res) => {
     try {
-        let data;
+        let data, quyenTK, id_capDV;
         let idMonHoc = req.params.id_monHoc;
         let idDV = req.params.id_DV;
         let tenMonHoc, tenDV;
@@ -1458,6 +1514,8 @@ let getNhapDiem = async (req, res) => {
         if (dataUser.length > 0) {
             tenCanBo = dataUser[0].tenCB;
             idCanBo = dataUser[0].id_CB;
+            quyenTK = dataUser[0].id_quyenTK;
+            id_capDV = dataUser[0].id_capDV;
         }
         data = result.recordsets[0];
         let MonHocArr = MonHoc.recordsets[0];
@@ -1470,7 +1528,7 @@ let getNhapDiem = async (req, res) => {
         }
 
 
-        return res.render('KQHL_NhapDiem.ejs', { dataKQHL: data, tenCanBo: tenCanBo, tenMonHoc: tenMonHoc, tenDV: tenDV, idMonHoc: idMonHoc, idDV: idDV })
+        return res.render('KQHL_NhapDiem.ejs', { dataKQHL: data, tenCanBo: tenCanBo, tenMonHoc: tenMonHoc, tenDV: tenDV, idMonHoc: idMonHoc, idDV: idDV, quyenTK: quyenTK, id_capDV: id_capDV })
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');
@@ -1499,5 +1557,5 @@ let nhapDiemKQHL = async (req, res) => {
 }
 
 module.exports = {
-    getLogin, login, getHomepage, getDetailTrungDoan, createDthuocE, updateDVCoBand, deleteDVTTd, getDetailTieuDoan, createCthuocD, updateDVCoBanc, deleteDVTTc, getdsDV, createDV, updateDV, deleteDV, getdsCB, createCB, updateCB, deleteCanBo, getFormCreateCB, getdsHVtheoKhoaHoc, getdsHVtheoDonVi, getdsKhoaHoc, createKhoaHoc, updateKhoaHoc, deleteKhoaHoc, createHVtheoKhoaHoc, updateHVtheoKhoaHoc, getdsDaiDoi, createHVtheoDonVi, updateHVtheoDonVi, deleteHVtheoDonVi, getdsTrungDoan, getdsChungLoai, createChungLoai, updateChungLoai, deleteChungLoai, getdsTTB, createTTB, updateTTB, deleteTTB, getdsBienChe, createBienCheTTB, updateBienCheTTB, deleteBienCheTTB, getdsMonHoc, createMonHoc, updateMonHoc, getdsBaiHoc, createBaiHoc, updateBaiHoc, getdsNDBH, createNDBH, updateNDBH, getKHHLTrungDoan, getKQHL, getdsDonVitheoMonHoc, getNhapDiem, nhapDiemKQHL
+    getLogin, login, getHomepage, getDetailTrungDoan, createDthuocE, updateDVCoBand, deleteDVTTd, getDetailTieuDoan, createCthuocD, updateDVCoBanc, deleteDVTTc, getdsDV, createDV, updateDV, deleteDV, getdsCB, createCB, updateCB, deleteCanBo, getdsHVtheoKhoaHoc, getdsHVtheoDonVi, getdsKhoaHoc, createKhoaHoc, updateKhoaHoc, deleteKhoaHoc, createHVtheoKhoaHoc, updateHVtheoKhoaHoc, getdsDaiDoi, createHVtheoDonVi, updateHVtheoDonVi, deleteHVtheoDonVi, getdsTrungDoan, getdsChungLoai, createChungLoai, updateChungLoai, deleteChungLoai, getdsTTB, createTTB, updateTTB, deleteTTB, getdsBienChe, createBienCheTTB, updateBienCheTTB, deleteBienCheTTB, getdsMonHoc, createMonHoc, updateMonHoc, getdsBaiHoc, createBaiHoc, updateBaiHoc, getdsNDBH, createNDBH, updateNDBH, getKHHLdsTrungDoan, getKHHLTrungDoan, getKQHL, getdsDonVitheoMonHoc, getNhapDiem, nhapDiemKQHL
 }
