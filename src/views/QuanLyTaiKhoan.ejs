@@ -50,13 +50,13 @@
         <hr>
         <ul class="app-menu">
             <div>
-                <li><a class="app-menu__item " href="/"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item" href="/"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều
                             khiển</span></a></li>
             </div>
             <div>
                 <li><a class="app-menu__item" href="#"
-                        onclick="checkPermissionAndNavigate('/dsDonVi','<%= quyenTK%>','<%= id_capDV%>' )"><i
+                        onclick="checkPermissionAndNavigate('/dsDonVi','<%= quyenTK%>','<%= id_capDV%>','<%= idDVofCB%>' )"><i
                             class='app-menu__icon bx bx-cog'></i><span class="app-menu__label">Quản lý tổ
                             chức</span></a></li>
             </div>
@@ -66,48 +66,53 @@
                         <span class="app-menu__label">Quản lý học viên</span></a>
                     <div id="myDropdown1" class="dropdown-content">
                         <a href="#" class="app-menu__item app-menu__label"
-                            onclick="checkPermissionAndNavigate('/QLHVtheoKhoaHoc','<%= quyenTK%>','<%= id_capDV%>' )"><i
-                                class='bx bx-caret-right' style="margin: 0px 10px;"></i>Theo khóa học</a>
+                            onclick="checkPermissionAndNavigate('/QLHVtheoKhoaHoc','<%= quyenTK%>','<%= id_capDV%>','<%= idDVofCB%>' )"><i
+                                class='bx bx-caret-right' style="margin: 0px 10px;"></i>Danh sách học viên khóa học</a>
                         <a href="#" class="app-menu__item app-menu__label"
-                            onclick="checkPermissionAndNavigate('/QLHVtheoDonVi','<%= quyenTK%>','<%= id_capDV%>' )"><i
-                                class='bx bx-caret-right' style="margin: 0px 10px;"></i>Theo đơn vị</a>
+                            onclick="checkPermissionAndNavigate('','<%= quyenTK%>','<%= id_capDV%>','<%= idDVofCB%>' )"><i
+                                class='bx bx-caret-right' style="margin: 0px 10px;"></i>Quản lý học viên đơn vị</a>
                     </div>
                 </li>
             </div>
             <div>
-                <li><a class="app-menu__item active" href="#"
-                        onclick="checkPermissionAndNavigate('/QLTTB','<%= quyenTK%>','<%= id_capDV%>' )"><i
+                <li><a class="app-menu__item" href="#"
+                        onclick="checkPermissionAndNavigate('/QLTTB-ChungLoai/<%= idDVofCB%>','<%= quyenTK%>','<%= id_capDV%>','<%= idDVofCB%>' )"><i
                             class='app-menu__icon bx bx-cog'></i><span class="app-menu__label">Quản lý trang thiết
                             bị</span></a></li>
                 </li>
             </div>
 
             <div>
-                <li><a class="app-menu__item dropbtn" onclick="myFunction3()"><i
+                <li><a class="app-menu__item dropbtn" onclick="myFunction2()"><i
                             class='app-menu__icon bx bx-id-card'></i>
                         <span class="app-menu__label">Kế hoạch huấn luyện</span></a>
-                    <div id="myDropdown3" class="dropdown-content">
+                    <div id="myDropdown2" class="dropdown-content">
                         <a href="#" class="app-menu__item app-menu__label"
-                            onclick="checkPermissionAndNavigate('/ChuongTrinhHuanLuyen','<%= quyenTK%>','<%= id_capDV%>' )"><i
+                            onclick="checkPermissionAndNavigate('/ChuongTrinhHuanLuyen','<%= quyenTK%>','<%= id_capDV%>','<%= idDVofCB%>' )"><i
                                 class='bx bx-caret-right' style="margin: 0px 10px;"></i>Chương trình huấn luyện</a>
-                        <a href="" class="app-menu__item app-menu__label"><i class='bx bx-caret-right'
-                                style="margin: 0px 10px;"></i>KHHL của đại đội</a>
-                        <a href="#home" class="app-menu__item app-menu__label"><i class='bx bx-caret-right'
-                                style="margin: 0px 10px;"></i>KHHL của tiểu đoàn</a>
-                        <a href="/KHHLTrungDoan" class="app-menu__item app-menu__label"><i class='bx bx-caret-right'
-                                style="margin: 0px 10px;"></i>KHHL của trung đoàn</a>
+                        <a href="#" class="app-menu__item app-menu__label"
+                            onclick="checkPermissionAndNavigate('/KHHLDaiDoi/<%= idDVofCB%>','<%= quyenTK%>','<%= id_capDV%>','<%= idDVofCB%>' )"><i
+                                class='bx bx-caret-right' style="margin: 0px 10px;"></i>KHHL
+                            của đại đội</a>
+                        <a href="#" class="app-menu__item app-menu__label"
+                            onclick="checkPermissionAndNavigate('/KHHLTieuDoan/<%= idDVofCB%>','<%= quyenTK%>','<%= id_capDV%>','<%= idDVofCB%>' )"><i
+                                class='bx bx-caret-right' style="margin: 0px 10px;"></i>KHHL của tiểu đoàn</a>
+                        <a href="#" class="app-menu__item app-menu__label"
+                            onclick="checkPermissionAndNavigate('/KHHLTrungDoan/<%= idDVofCB%>','<%= quyenTK%>','<%= id_capDV%>','<%= idDVofCB%>' )"><i
+                                class='bx bx-caret-right' style="margin: 0px 10px;"></i>KHHL của trung đoàn</a>
                     </div>
                 </li>
             </div>
             <div>
-                <li><a class="app-menu__item " href="#"
-                        onclick="checkPermissionAndNavigate('/KetQuaHuanLuyen','<%= quyenTK%>','<%= id_capDV%>' )"><i
-                            class='app-menu__icon bx bx-id-card'></i>
-                        <span class="app-menu__label">Kết quả huấn luyện</span></a></li>
+                <li><a class="app-menu__item" href="#"
+                        onclick="checkPermissionAndNavigate('/KetQuaHuanLuyen','<%= quyenTK%>','<%= id_capDV%>','<%= idDVofCB%>' )"><i
+                            class='app-menu__icon bx bx-dollar'></i><span class="app-menu__label">Thực hiện huấn
+                            luyện</span></a></li>
             </div>
             <div>
-                <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-dollar'></i><span
-                            class="app-menu__label">Quản trị người
+                <li><a class="app-menu__item active" href="#"
+                        onclick="checkPermissionAndNavigate('/QuanLyTaiKhoan','<%= quyenTK%>','<%= id_capDV%>','<%= idDVofCB%>' )"><i
+                            class='app-menu__icon bx bx-dollar'></i><span class="app-menu__label">Quản trị người
                             dùng</span></a></li>
             </div>
             <div>
@@ -120,7 +125,7 @@
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
-                <li class="breadcrumb-item active"><a href="#"><b>Quản lý trang thiết bị</b></a></li>
+                <li class="breadcrumb-item active"><a href="#"><b>Quản lý tài khoản</b></a></li>
             </ul>
             <div id="clock"></div>
         </div>
@@ -128,6 +133,15 @@
             <div class="col-md-12">
                 <div class="tile">
                     <div class="tile-body">
+                        <div class="row element-button">
+                            <div class="col-sm-2">
+                                <a class="btn btn-add btn-sm" data-toggle="modal"
+                                    data-target="#exampleModalCenter"><b><i class="fas fa-folder-plus"></i> Tạo mới tài
+                                        khoản
+                                    </b></a>
+                            </div>
+
+                        </div>
                         <div class="row" style="margin-bottom: 10px;">
                             <div class="col-sm-12 col-md-6">
                                 <div class="dataTables_length" id="sampleTable_length"
@@ -153,41 +167,52 @@
                         <div class="row">
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
-
                                     <tr>
-                                        <th width="10">STT</th>
+                                        <th width="10"><input type="checkbox" id="all"></th>
+                                        <th>Mã cán bộ</th>
+                                        <th>Tên cán bộ</th>
                                         <th>Tên đơn vị</th>
-                                        <th>Mã đơn vị</th>
-                                        <th>Cấp đơn vị</th>
-                                        <th>Mô tả</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>Quyền tài khoản</th>
                                         <th>Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% for (let i=0; i< dataDVTD.length; i++) { %>
+                                    <% for(let i=0; i<dataTK.length; i++) { %>
                                         <tr>
-                                            <td style="text-align: center;">
-                                                <%= i + 1%>
+                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                                            <td>
+                                                <%= dataTK[i].id_CB %>
                                             </td>
                                             <td>
-                                                <%= dataDVTD[i].tenDV%>
+                                                <%= dataTK[i].tenCB %>
                                             </td>
                                             <td>
-                                                <%= dataDVTD[i].id_DV%>
+                                                <%= dataTK[i].tenDV %>
                                             </td>
                                             <td>
-                                                <%= dataDVTD[i].tenCapDV%>
+                                                <%= dataTK[i].username %>
                                             </td>
                                             <td>
-                                                <%= dataDVTD[i].moTa%>
+                                                <%= dataTK[i].passwrd %>
+                                            </td>
+                                            <td>
+                                                <%= dataTK[i].tenQuyenTK %>
                                             </td>
                                             <td style="display: flex;">
-                                                <a class="btn btn-sm btn-primary" style="margin-right: 10px;"
-                                                    href="/QLTTB-ChungLoai/<%= dataDVTD[i].id_DV%>">Chi tiết</a>
 
-                                                <a class="btn btn-sm btn-primary"
-                                                    style="background-color: #b2fdfd; color: rgb(3 79 178);"
-                                                    href="/BienCheTTB/<%= dataDVTD[i].id_DV%>">Biên chế</a>
+                                                <button class="btn btn-primary btn-sm trash" type="submit" title="Xóa"
+                                                    onclick="deleteRow('<%= dataTK[i].id_CB %>','<%= dataTK[i].id_user %>')"
+                                                    style="margin-left: 5px; margin-right: 5px;"><i
+                                                        class="fas fa-trash-alt"></i>
+                                                </button>
+                                                <button class="btn btn-primary btn-sm edit" type="button"
+                                                    onclick="openEditModal('<%= dataTK[i].id_CB %>','<%= dataTK[i].id_user %>','<%= dataTK[i].username %>','<%= dataTK[i].passwrd %>','<%= dataTK[i].id_quyenTK %>')"
+                                                    title="Sửa" id="show-emp" data-toggle="modal"
+                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
+
+
                                             </td>
                                         </tr>
                                         <% } %>
@@ -233,6 +258,130 @@
     <!--
   MODAL
 -->
+    <div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+        data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: -5px;">
+            <div class="modal-content">
+                <form action="/updateTaiKhoan" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group  col-md-12">
+                                <span class="thong-tin-thanh-toan">
+                                    <h5>Chỉnh sửa thông tin tài khoản</h5>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Mã cán bộ:</label>
+                                <input class="form-control" type="text" name="id_CBupdate" readonly>
+
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Mã tài khoản:</label>
+                                <input class="form-control" type="text" name="id_userupdate" readonly>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Username:</label>
+                                <input class="form-control" type="text" name="usernameupdate" required>
+
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Password:</label>
+                                <input class="form-control" type="text" name="passwrdupdate" required>
+
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Quyền tài khoản:</label>
+                                <select class="form-control" id="id_monHoc" name="id_quyenTKupdate">
+                                    <option>-- Chọn quyền tài khoản --</option>
+                                    <% for(let i=0; i<listQuyenTK.length; i++) { %>
+                                        <option value="<%= listQuyenTK[i].id_quyenTK%>">
+                                            <%= listQuyenTK[i].tenQuyenTK%>
+                                        </option>
+                                        <% } %>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <BR>
+                        <button class="btn btn-save" type="submit">Lưu lại</button>
+                        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+                        <BR>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+MODAL
+-->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: -50px;">
+            <div class="modal-content">
+                <form action="/createTaiKhoan" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group  col-md-12">
+                                <span class="thong-tin-thanh-toan">
+                                    <h5>Tạo mới tài khoản</h5>
+                                </span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Nhập cán bộ:</label>
+                                <!-- <input class="form-control" type="text" name="id_DV" required> -->
+                                <select class="form-control" id="id_monHoc" name="id_CB">
+                                    <option>-- Chọn cán bộ --</option>
+                                    <% for(let i=0; i<listCanBo.length; i++) { %>
+                                        <option value="<%= listCanBo[i].id_CB%>">
+                                            <%= listCanBo[i].tenCB%>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Nhập mã tài khoản mới:</label>
+                                <input class="form-control" type="text" name="id_user" required>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Nhập username mới:</label>
+                                <input class="form-control" type="text" name="username" required>
+
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Nhập password mới:</label>
+                                <input class="form-control" type="text" name="passwrd" required>
+
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Quyền tài khoản:</label>
+                                <select class="form-control" id="id_monHoc" name="id_quyenTK">
+                                    <option>-- Chọn quyền tài khoản --</option>
+                                    <% for(let i=0; i<listQuyenTK.length; i++) { %>
+                                        <option value="<%= listQuyenTK[i].id_quyenTK%>">
+                                            <%= listQuyenTK[i].tenQuyenTK%>
+                                        </option>
+                                        <% } %>
+                                </select>
+
+                            </div>
+                        </div>
+                        <BR>
+                        <button class="btn btn-save" type="submit">Lưu lại</button>
+                        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+                        <BR>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="../doc/js/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
@@ -375,84 +524,176 @@
         }
     </script>
     <script>
+        function openEditModal(id_CB, id_user, username, passwrd, id_quyenTK) {
+            // Điền thông tin vào các ô input trong modal
+            document.querySelector('#ModalUP [name="id_CBupdate"]').value = id_CB;
+            document.querySelector('#ModalUP [name="id_userupdate"]').value = id_user;
+            document.querySelector('#ModalUP [name="usernameupdate"]').value = username;
+            document.querySelector('#ModalUP [name="passwrdupdate"]').value = passwrd;
+            document.querySelector('#ModalUP [name="id_quyenTK"]').value = id_quyenTK;
+
+            // Hiển thị modal
+            $('#ModalUP').modal('show');
+        }
+    </script>
+    <script>
+        function deleteRow(id_CB, id_user) {
+
+
+            // Hiển thị cảnh báo
+            swal({
+                title: "Cảnh báo",
+                text: "Bạn có chắc chắn muốn xóa đơn vị này không?",
+                buttons: ["Hủy bỏ", "Đồng ý"],
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        // Nếu người dùng chọn Đồng ý, thực hiện Ajax request
+                        sendDeleteRequest(id_CB, id_user);
+                        // location.reload();
+                    }
+                });
+        }
+
+        function sendDeleteRequest(id_CB, id_user) {
+            // Thực hiện Ajax request để gửi thông tin đến server
+            $.ajax({
+                url: '/deleteTaiKhoan',  // Đường dẫn của API hoặc endpoint xử lý xóa
+                type: 'POST',             // Phương thức HTTP
+                data: { id_CB: id_CB, id_user: id_user },  // Thông tin cần gửi đến server (có thể là rowIndex hoặc thông tin khác)
+                success: function (response) {
+                    // Xử lý phản hồi từ server (nếu cần)
+                    console.log(response);
+
+                    // Sau khi xóa thành công, có thể cập nhật UI hoặc làm gì đó khác
+
+                    location.reload();
+                },
+                error: function (error) {
+                    console.error('Error during delete request:', error);
+                }
+            });
+        }
+    </script>
+    <script>
         // Giả sử id_quyen được lưu trữ trong biến id_quyen
         // Thay đổi giá trị này tùy thuộc vào cách bạn lấy id_quyen
 
         // Hàm kiểm tra quyền trước khi chuyển hướng
-        function checkPermissionAndNavigate(destination, quyenTK, id_capDV) {
+        function checkPermissionAndNavigate(destination, quyenTK, id_capDV, idDV) {
+            var idDV = idDV;
             // Kiểm tra xem id_quyen có đủ quyền hay không
             if (quyenTK == 1) {
-
-                if (id_capDV == 3) {
-                    if (destination == '/KHHLTrungDoan') {
-                        window.location.href = destination;
-                        return true;
-                    }
-                    else if (destination == '/ChuongTrinhHuanLuyen') {
-                        window.location.href = destination;
-                        return true;
-                    }
-                    else {
-                        swal({
-                            title: "",
-                            text: "Bạn không có quyền truy cập chức năng này....",
-                            icon: "error",
-                            close: true,
-                            button: "Đóng",
-                        });
-                        return false;
-                    }
-
-                }
-                if (id_capDV == 2) {
-                    if (destination == '/KHHLTieuDoan') {
-                        window.location.href = destination;
-                        return true;
-                    }
-                    else {
-                        swal({
-                            title: "",
-                            text: "Bạn không có quyền truy cập chức năng này....",
-                            icon: "error",
-                            close: true,
-                            button: "Đóng",
-                        });
-                        return false;
-                    }
-                }
-                if (id_capDV == 1) {
-                    if (destination == '/KHHLDaiDoi') {
-                        window.location.href = destination;
-                        return true;
-                    }
-                    else {
-                        swal({
-                            title: "",
-                            text: "Bạn không có quyền truy cập chức năng này....",
-                            icon: "error",
-                            close: true,
-                            button: "Đóng",
-                        });
-                        return false;
-                    }
-                }
-
-                // Nếu có đủ quyền, chuyển hướng đến đích
-                // Hiển thị cảnh báo
-            }
-            else if (quyenTK == 2) {
                 if (destination == '/dsDonVi') {
                     window.location.href = destination;
                     return true;
                 }
-                else if (destination == '/QLHVtheoKhoaHoc') {
+                if (destination == '/QuanLyTaiKhoan') {
                     window.location.href = destination;
                     return true;
                 }
-                else if (destination == '/QLHVtheoDonVi') {
+                else {
+                    swal({
+                        title: "",
+                        text: "Bạn không có quyền truy cập chức năng này....",
+                        icon: "error",
+                        close: true,
+                        button: "Đóng",
+                    });
+                    return false;
+                }
+            }
+            else if (quyenTK == 2) {
+                if (destination == '/QLHVtheoKhoaHoc') {
                     window.location.href = destination;
                     return true;
                 }
+                if (destination == '/QLTTB-ChungLoai/' + idDV) {
+                    window.location.href = destination;
+                    return true;
+                }
+                if (destination == '/KHHLTrungDoan/' + idDV) {
+                    if (id_capDV == 3) {
+                        window.location.href = destination;
+                        return true;
+                    }
+                    else {
+                        swal({
+                            title: "",
+                            text: "Bạn không có quyền truy cập chức năng này....",
+                            icon: "error",
+                            close: true,
+                            button: "Đóng",
+                        });
+                        return false;
+                    }
+
+                }
+                if (destination == '/KHHLTieuDoan/' + idDV) {
+                    if (id_capDV == 2) {
+                        window.location.href = destination;
+                        return true;
+                    }
+                    else {
+                        swal({
+                            title: "",
+                            text: "Bạn không có quyền truy cập chức năng này....",
+                            icon: "error",
+                            close: true,
+                            button: "Đóng",
+                        });
+                        return false;
+                    }
+
+                }
+                if (destination == '/KHHLDaiDoi/' + idDV) {
+                    if (id_capDV == 1) {
+                        window.location.href = destination;
+                        return true;
+                    }
+                    else {
+                        swal({
+                            title: "",
+                            text: "Bạn không có quyền truy cập chức năng này....",
+                            icon: "error",
+                            close: true,
+                            button: "Đóng",
+                        });
+                        return false;
+                    }
+
+                }
+                if (destination == '/ChuongTrinhHuanLuyen') {
+                    window.location.href = destination;
+                    return true;
+                }
+                if (destination == '/KetQuaHuanLuyen') {
+                    window.location.href = destination;
+                    return true;
+                }
+                if (destination == '') {
+                    if (id_capDV == 3) {
+                        window.location.href = '/QLHVtheoDonViTrungDoan/' + idDV;
+                    }
+                    else if (id_capDV == 2) {
+                        window.location.href = '/QLHVtheoDonViTieuDoan/' + idDV;
+                    }
+                    else if (id_capDV == 1) {
+                        window.location.href = '/dsHVtheoDonVi/' + idDV;
+                        return true;
+                    }
+                    else {
+                        swal({
+                            title: "",
+                            text: "Bạn không có quyền truy cập chức năng này....",
+                            icon: "error",
+                            close: true,
+                            button: "Đóng",
+                        });
+                        return false;
+                    }
+                }
+
                 else {
                     swal({
                         title: "",
@@ -465,44 +706,7 @@
                 }
 
             }
-            else if (quyenTK == 3) {
-                if (destination == '/QLTTB') {
-                    window.location.href = destination;
-                    return true;
-                }
-                else {
-                    swal({
-                        title: "",
-                        text: "Bạn không có quyền truy cập chức năng này....",
-                        icon: "error",
-                        close: true,
-                        button: "Đóng",
-                    });
-                    return false;
-                }
-            }
-            else if (quyenTK == 4) {
-                if (destination == '/KetQuaHuanLuyen') {
-                    window.location.href = destination;
-                    return true;
-                }
-                else {
-                    swal({
-                        title: "",
-                        text: "Bạn không có quyền truy cập chức năng này....",
-                        icon: "error",
-                        close: true,
-                        button: "Đóng",
-                    });
-                    return false;
-                }
-            }
-            else if (quyenTK == 5) {
-                window.location.href = destination;
-            }
             else {
-                // Nếu không có đủ quyền, có thể hiển thị thông báo hoặc thực hiện hành động khác
-                // alert('Bạn không có quyền truy cập');
                 swal({
                     title: "",
                     text: "Bạn không có quyền truy cập chức năng này....",

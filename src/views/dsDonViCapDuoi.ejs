@@ -55,7 +55,7 @@
                             khiển</span></a></li>
             </div>
             <div>
-                <li><a class="app-menu__item" href="#"
+                <li><a class="app-menu__item active" href="#"
                         onclick="checkPermissionAndNavigate('/dsDonVi','<%= quyenTK%>','<%= id_capDV%>','<%= idDVofCB%>' )"><i
                             class='app-menu__icon bx bx-cog'></i><span class="app-menu__label">Quản lý tổ
                             chức</span></a></li>
@@ -83,7 +83,7 @@
             </div>
 
             <div>
-                <li><a class="app-menu__item active dropbtn" onclick="myFunction2()"><i
+                <li><a class="app-menu__item dropbtn" onclick="myFunction2()"><i
                             class='app-menu__icon bx bx-id-card'></i>
                         <span class="app-menu__label">Kế hoạch huấn luyện</span></a>
                     <div id="myDropdown2" class="dropdown-content">
@@ -125,7 +125,10 @@
     <main class="app-content">
         <div class="app-title">
             <ul class="app-breadcrumb breadcrumb side">
-                <li class="breadcrumb-item active"><a href="#"><b>Chương trình huấn luyện</b></a></li>
+                <li class="breadcrumb-item active"><a href="/dsDonVi"><b>Quản lý đơn vị</b></a></li>
+                <li class="breadcrumb-item"><a href="/dsDonViCapDuoi/<%= idDV %>"> <span>
+                            <%= idDV %>
+                        </span></a></li>
             </ul>
             <div id="clock"></div>
         </div>
@@ -133,125 +136,123 @@
             <div class="col-md-12">
                 <div class="tile">
                     <div class="tile-body">
-                        <% if(id_capDV==3) { %>
-                            <div class="row element-button">
-                                <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" data-toggle="modal"
-                                        data-target="#exampleModalCenter"><b><i class="fas fa-folder-plus"></i> Tạo mới
-                                            môn
-                                            học
-                                        </b></a>
-                                </div>
-
+                        <div class="row element-button">
+                            <div class="col-sm-2">
+                                <a class="btn btn-add btn-sm" data-toggle="modal"
+                                    data-target="#exampleModalCenter"><b><i class="fas fa-folder-plus"></i> Tạo mới đơn
+                                        vị
+                                    </b></a>
                             </div>
-                            <% } %>
-                                <div class="row" style="margin-bottom: 10px;">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="dataTables_length" id="sampleTable_length"
-                                            style="display: flex; margin-top: 10px ;">
-                                            <label style="width: 10%;margin-top: 5px;">Hiển thị</label>
-                                            <select name="sampleTable_length" aria-controls="sampleTable"
-                                                class="form-control form-control-sm" style="width: 15%;">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>
-                                            <label style="width: 15%;margin-left: 4px;margin-top: 5px;">danh mục</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div id="sampleTable_filter" class="dataTables_filter" style="display: flex;">
-                                            <label style="width: 15%;margin-top: 15px;">Tìm
-                                                kiếm:</label><input type="search" class="form-control form-control-sm"
-                                                placeholder="" aria-controls="sampleTable">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <table class="table table-hover table-bordered" id="sampleTable">
-                                        <thead>
-                                            <tr>
-                                                <th width="10"><input type="checkbox" id="all"></th>
-                                                <th>Mã môn học</th>
-                                                <th>Tên môn học</th>
-                                                <th>Đối tượng học</th>
-                                                <th>Mô tả</th>
-                                                <th>Chức năng</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <% for (let i=0; i < dataMH.length; i++ ) {%>
-                                                <tr>
-                                                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                                    <td>
-                                                        <%= dataMH[i].id_monHoc%>
-                                                    </td>
-                                                    <td>
-                                                        <%= dataMH[i].tenMonHoc%>
-                                                    </td>
-                                                    <td>
-                                                        <%= dataMH[i].doiTuong%>
-                                                    </td>
-                                                    <td>
-                                                        <%= dataMH[i].moTa%>
-                                                    </td>
-                                                    <td style="display: flex;">
-                                                        <a class="btn btn-primary btn-sm infobtn" type="button"
-                                                            title="chi tiết" onclick="myFunction(this)"
-                                                            href="/ChuongTrinhHuanLuyen/<%= dataMH[i].id_monHoc%>"><i
-                                                                class="fas fa-info"></i>
-                                                        </a>
-                                                        <% if(id_capDV==3) { %>
-                                                            <form action="" method="post">
-                                                                <input type="text" hidden name="idDVdelete" value="">
-                                                                <button class="btn btn-primary btn-sm trash"
-                                                                    type="submit" title="Xóa" onclick="myFunction(this)"
-                                                                    style="margin: 0px 5px;"><i
-                                                                        class="fas fa-trash-alt"></i>
-                                                                </button>
-                                                            </form>
-                                                            <button class="btn btn-primary btn-sm edit" type="button"
-                                                                onclick="openEditModal('<%= dataMH[i].id_monHoc%>','<%= dataMH[i].tenMonHoc%>','<%= dataMH[i].doiTuong%>','<%= dataMH[i].moTa%>')"
-                                                                title="Sửa" id="show-emp" data-toggle="modal"
-                                                                data-target="#ModalUP"><i
-                                                                    class="fas fa-edit"></i></button>
-                                                            <% } %>
+                            <div class="col-sm-2">
+                                <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" href="/dsDonVi"
+                                    onclick="myFunction(this)"><i class="fas fa-file-upload"></i> Quay lại</a>
+                            </div>
 
-                                                    </td>
-                                                </tr>
-                                                <% } %>
-                                        </tbody>
-                                    </table>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-5">
-                                        <div class="dataTables_info" id="sampleTable_info" role="status"
-                                            aria-live="polite">Hiện
-                                            1 đến 10 của 16
-                                            danh mục</div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-7">
-                                        <div class="dataTables_paginate paging_simple_numbers" id="sampleTable_paginate"
-                                            style="margin-left: 430px;">
-                                            <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled"
-                                                    id="sampleTable_previous"><a href="#" aria-controls="sampleTable"
-                                                        data-dt-idx="0" tabindex="0" class="page-link">Lùi</a></li>
-                                                <li class="paginate_button page-item active"><a href="#"
-                                                        aria-controls="sampleTable" data-dt-idx="1" tabindex="0"
-                                                        class="page-link">1</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="sampleTable" data-dt-idx="2" tabindex="0"
-                                                        class="page-link">2</a></li>
-                                                <li class="paginate_button page-item next" id="sampleTable_next"><a
-                                                        href="#" aria-controls="sampleTable" data-dt-idx="3"
-                                                        tabindex="0" class="page-link">Tiếp</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="dataTables_length" id="sampleTable_length"
+                                    style="display: flex; margin-top: 10px ;">
+                                    <label style="width: 10%;margin-top: 5px;">Hiển thị</label>
+                                    <select name="sampleTable_length" aria-controls="sampleTable"
+                                        class="form-control form-control-sm" style="width: 15%;">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                    <label style="width: 15%;margin-left: 4px;margin-top: 5px;">danh mục</label>
                                 </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div id="sampleTable_filter" class="dataTables_filter" style="display: flex;"><label
+                                        style="width: 15%;margin-top: 15px;">Tìm
+                                        kiếm:</label><input type="search" class="form-control form-control-sm"
+                                        placeholder="" aria-controls="sampleTable"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table table-hover table-bordered" id="sampleTable">
+                                <thead>
+                                    <tr>
+                                        <th width="10"><input type="checkbox" id="all"></th>
+                                        <th>Tên đơn vị</th>
+                                        <th>Mã đơn vị</th>
+                                        <th>Cấp đơn vị</th>
+                                        <th>Mô tả</th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(let i=0; i < dataDV.length; i++) { %>
+                                        <tr>
+                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                                            <td>
+                                                <%= dataDV[i].tenDV %>
+                                            </td>
+                                            <td>
+                                                <%= dataDV[i].id_DV %>
+                                            </td>
+                                            <td>
+                                                <%= dataDV[i].tenCapDV %>
+                                            </td>
+                                            <td>
+                                                <%= dataDV[i].moTa %>
+                                            </td>
+                                            <td style="display: flex;">
+                                                <a class="btn btn-primary btn-sm infobtn" type="button" title="Nhân sự"
+                                                    onclick="myFunction(this)" href="/dsCanBo/<%= dataDV[i].id_DV %>"><i
+                                                        class="fas fa-address-book"></i>
+                                                </a>
+                                                <button class="btn btn-primary btn-sm trash" type="submit" title="Xóa"
+                                                    onclick="deleteRow('<%= dataDV[i].id_DV %>')"
+                                                    style="margin-left: 5px; margin-right: 5px;"><i
+                                                        class="fas fa-trash-alt"></i>
+                                                </button>
+                                                <button class="btn btn-primary btn-sm edit" type="button"
+                                                    onclick="openEditModal('<%= dataDV[i].id_DV %>','<%= dataDV[i].tenDV %>','<%= dataDV[i].tenCapDV %>','<%= dataDV[i].moTa %>')"
+                                                    title="Sửa" id="show-emp" data-toggle="modal"
+                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
+                                                <a class="btn btn-primary btn-sm infobtn" type="button"
+                                                    style="margin-left: 5px; margin-right: 5px; background-color: #88ecfa; color: #12395d;"
+                                                    title="Đơn vị trực thuộc" onclick="myFunction(this)"
+                                                    href="/dsDonViCapDuoi/<%= dataDV[i].id_DV %>"><i
+                                                        class="fas fa-info"></i>
+                                                </a>
+
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info" id="sampleTable_info" role="status" aria-live="polite">Hiện
+                                    1 đến 10 của 16
+                                    danh mục</div>
+                            </div>
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="sampleTable_paginate"
+                                    style="margin-left: 430px;">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled"
+                                            id="sampleTable_previous"><a href="#" aria-controls="sampleTable"
+                                                data-dt-idx="0" tabindex="0" class="page-link">Lùi</a></li>
+                                        <li class="paginate_button page-item active"><a href="#"
+                                                aria-controls="sampleTable" data-dt-idx="1" tabindex="0"
+                                                class="page-link">1</a></li>
+                                        <li class="paginate_button page-item "><a href="#" aria-controls="sampleTable"
+                                                data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                                        <li class="paginate_button page-item next" id="sampleTable_next"><a href="#"
+                                                aria-controls="sampleTable" data-dt-idx="3" tabindex="0"
+                                                class="page-link">Tiếp</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -267,46 +268,41 @@
 -->
     <div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
         data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: -5px;">
             <div class="modal-content">
-                <form action="/updateMonHoc" method="post">
+                <form action="/updateDV/<%= idDV %>" method="post">
                     <div class="modal-body">
                         <div class="row">
                             <div class="form-group  col-md-12">
                                 <span class="thong-tin-thanh-toan">
-                                    <h5>Chỉnh sửa thông tin môn học</h5>
+                                    <h5>Chỉnh sửa thông tin đơn vị</h5>
                                 </span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label class="control-label">Mã môn học </label>
-                                <input class="form-control" type="text" value="" name="id_monHocupdate" readonly>
+                                <label class="control-label">Mã đơn vị:</label>
+                                <input class="form-control" type="text" name="id_updateDV" readonly>
                             </div>
                             <div class="form-group col-md-12">
-                                <label class="control-label">Tên môn học</label>
-                                <input class="form-control" type="text" value="" name="tenMonHocupdate">
+                                <label class="control-label">Tên đơn vị:</label>
+                                <input class="form-control" type="text" name="tenDVupdate" required>
                             </div>
                             <div class="form-group col-md-12">
-                                <label class="control-label">Đối tượng học</label>
-                                <!-- <input class="form-control" type="text" value="" name="doiTuongupdate"> -->
-                                <select class="form-control" id="exampleSelect2" name="doiTuongupdate">
-                                    <option>Năm 1</option>
-                                    <option>Năm 2</option>
-                                    <option>Năm 3</option>
-                                    <option>Năm 4</option>
-                                    <option>Năm 5</option>
-                                </select>
+                                <label class="control-label">Cấp đơn vị:</label>
+                                <input class="form-control" type="text" name="capDVupdate" readonly>
                             </div>
-                            <div class="form-group  col-md-12">
-                                <label class="control-label">Mô tả môn học</label>
-                                <input class="form-control" type="textarea" value="" name="moTaupdate">
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Mô tả đơn vị:</label>
+                                <input class="form-control" type="text" name="moTaupdate" required>
                             </div>
-                            <BR>
-                            <button class="btn btn-save" style="margin: 0px 10px;" type="submit">Lưu lại</button>
-                            <a class="btn btn-cancel" style="margin: 0px;" data-dismiss="modal" href="#">Hủy bỏ</a>
-                            <BR>
+
                         </div>
+
+                        <BR>
+                        <button class="btn btn-save" type="submit">Lưu lại</button>
+                        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+                        <BR>
                     </div>
                 </form>
                 <div class="modal-footer">
@@ -314,7 +310,6 @@
             </div>
         </div>
     </div>
-
     <!--
 MODAL
 -->
@@ -322,36 +317,36 @@ MODAL
         aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form action="/createMonHoc" method="post">
+                <form action="/createDV/<%= idDV %>" method="post">
                     <div class="modal-body">
                         <div class="row">
                             <div class="form-group  col-md-12">
                                 <span class="thong-tin-thanh-toan">
-                                    <h5>Tạo mới môn học</h5>
+                                    <h5>Tạo mới đơn vị</h5>
                                 </span>
                             </div>
                             <div class="form-group col-md-12">
-                                <label class="control-label">Nhập mã môn học mới:</label>
-                                <input class="form-control" type="text" name="id_monHoc" required>
+                                <label class="control-label">Nhập mã đơn vị mới:</label>
+                                <input class="form-control" type="text" name="id_DV" required>
                             </div>
                             <div class="form-group col-md-12">
-                                <label class="control-label">Nhập tên môn học mới:</label>
-                                <input class="form-control" type="text" name="tenMonHoc" required>
+                                <label class="control-label">Nhập tên đơn vị mới:</label>
+                                <input class="form-control" type="text" name="tenDV" required>
                             </div>
                             <div class="form-group col-md-12">
-                                <label class="control-label">Nhập đối tượng</label>
-                                <!-- <input class="form-control" type="text" value="" name="doiTuong"> -->
-                                <select class="form-control" id="exampleSelect2" name="doiTuong">
-                                    <option>Năm 1</option>
-                                    <option>Năm 2</option>
-                                    <option>Năm 3</option>
-                                    <option>Năm 4</option>
-                                    <option>Năm 5</option>
+                                <label class="control-label">Đơn vị</label>
+                                <select class="form-control" id="exampleSelect2" name="capDV" required>
+                                    <option>-- Chọn cấp đơn vị --</option>
+                                    <% for(let i=0; i < dataCapDV.length; i++) { %>
+                                        <option value="<%= i+1 %>">
+                                            <%= dataCapDV[i].tenCapDV %>
+                                        </option>
+                                        <% } %>
                                 </select>
                             </div>
                             <div class="form-group col-md-12">
-                                <label class="control-label">Nhập mô tả môn học:</label>
-                                <input class="form-control" type="textarea" name="moTa">
+                                <label class="control-label">Nhập mô tả đơn vị:</label>
+                                <input class="form-control" type="text" name="moTa" required>
                             </div>
                         </div>
                         <BR>
@@ -506,18 +501,55 @@ MODAL
             }
         }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script>
-        function openEditModal(id, tenMH, doiTuong, moTa) {
-            console.log(id, tenMH, moTa);
+        function openEditModal(id, tenDV, capDV, moTa) {
             // Điền thông tin vào các ô input trong modal
-            document.querySelector('#ModalUP [name="id_monHocupdate"]').value = id;
-            document.querySelector('#ModalUP [name="tenMonHocupdate"]').value = tenMH;
-            document.querySelector('#ModalUP [name="doiTuongupdate"]').value = doiTuong;
+            document.querySelector('#ModalUP [name="id_updateDV"]').value = id;
+            document.querySelector('#ModalUP [name="tenDVupdate"]').value = tenDV;
+            document.querySelector('#ModalUP [name="capDVupdate"]').value = capDV;
             document.querySelector('#ModalUP [name="moTaupdate"]').value = moTa;
 
             // Hiển thị modal
             $('#ModalUP').modal('show');
+        }
+    </script>
+    <script>
+        function deleteRow(id_DV) {
+
+
+            // Hiển thị cảnh báo
+            swal({
+                title: "Cảnh báo",
+                text: "Bạn có chắc chắn muốn xóa đơn vị này không?",
+                buttons: ["Hủy bỏ", "Đồng ý"],
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        // Nếu người dùng chọn Đồng ý, thực hiện Ajax request
+                        sendDeleteRequest(id_DV);
+                        // location.reload();
+                    }
+                });
+        }
+
+        function sendDeleteRequest(id_DV) {
+            // Thực hiện Ajax request để gửi thông tin đến server
+            $.ajax({
+                url: '/deleteDonVi',  // Đường dẫn của API hoặc endpoint xử lý xóa
+                type: 'POST',             // Phương thức HTTP
+                data: { id_DV: id_DV },  // Thông tin cần gửi đến server (có thể là rowIndex hoặc thông tin khác)
+                success: function (response) {
+                    // Xử lý phản hồi từ server (nếu cần)
+                    console.log(response);
+
+                    // Sau khi xóa thành công, có thể cập nhật UI hoặc làm gì đó khác
+
+                    location.reload();
+                },
+                error: function (error) {
+                    console.error('Error during delete request:', error);
+                }
+            });
         }
     </script>
     <script>
