@@ -154,7 +154,9 @@
                                 <div id="sampleTable_filter" class="dataTables_filter" style="display: flex;"><label
                                         style="width: 15%;margin-top: 15px;">Tìm
                                         kiếm:</label><input type="search" class="form-control form-control-sm"
-                                        placeholder="" aria-controls="sampleTable"></div>
+                                        placeholder="" aria-controls="sampleTable">
+                                    <button type="submit">Tìm kiếm</button>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -245,7 +247,56 @@
     <script src="../doc/js/plugins/pace.min.js"></script>
     <!--===============================================================================================-->
     <script type="text/javascript" src="../doc/js/plugins/chart.js"></script>
-    <script src="../"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#searchInput').on('keyup', function () {
+                var value = $(this).val().toLowerCase();
+                $('#sampleTable tbody tr').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        function postData() {
+            var searchData = $('#searchInput').val();
+            // Thực hiện post dữ liệu tìm kiếm (sử dụng Ajax hoặc cách bạn muốn)
+            $.ajax({
+                type: 'POST',
+                url: '/your-post-endpoint',
+                data: { searchData: searchData },
+                success: function (response) {
+                    console.log('Dữ liệu đã được post thành công!', response);
+                    // Gọi hàm để hiển thị dữ liệu lên bảng
+                    displayData(response);
+                },
+                error: function (error) {
+                    console.error('Lỗi khi post dữ liệu: ', error);
+                }
+            });
+        }
+
+        function displayData(data) {
+            // Xóa dữ liệu hiện tại của bảng
+            $('#sampleTable tbody').empty();
+
+            // Thêm dữ liệu mới từ máy chủ vào bảng
+            for (var i = 0; i < data.length; i++) {
+                $('#sampleTable tbody').append('<tr>' +
+                    '<td width="10"><input type="checkbox" name="check1" value="1"></td>' +
+                    '<td>' + data[i].id_HV + '</td>' +
+                    '<td>' + data[i].tenHV + '</td>' +
+                    '<td>' + data[i].ngaySinh + '</td>' +
+                    '<td>' + data[i].gioiTinh + '</td>' +
+                    '<td>' + data[i].queQuan + '</td>' +
+                    '<td>' + data[i].tenLop + '</td>' +
+                    '<td>' + data[i].tenKhoaHoc + '</td>' +
+                    '<td>' + data[i].sdt + '</td>' +
+                    // ...Thêm cột và dữ liệu khác nếu cần...
+                    '</tr>');
+            }
+        }
+    </script>
     <!--===============================================================================================-->
     <script type="text/javascript">
         //Thời Gian

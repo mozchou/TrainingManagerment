@@ -164,112 +164,113 @@
                                             <label style="width: 15%;margin-left: 4px;margin-top: 5px;">danh mục</label>
                                         </div>
                                     </div>
+
                                     <div class="col-sm-12 col-md-6">
                                         <div id="sampleTable_filter" class="dataTables_filter" style="display: flex;">
                                             <label style="width: 15%;margin-top: 15px;">Tìm
                                                 kiếm:</label><input type="search" class="form-control form-control-sm"
-                                                placeholder="" aria-controls="sampleTable">
+                                                placeholder="" aria-controls="sampleTable" id="tuKhoa"
+                                                style="width: 450px; margin-right: 10px;">
+                                            <button class="btn btn-primary btn-sm" style="margin-top: 5px"
+                                                onclick="postData('<%= idDV %>')">Tìm kiếm</button>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <table class="table table-hover table-bordered" id="sampleTable">
-                                        <thead>
-                                            <tr>
-                                                <th width="10"><input type="checkbox" id="all"></th>
-                                                <th>Mã học viên</th>
-                                                <th>Tên học viên</th>
-                                                <th>Ngày sinh</th>
-                                                <th>Giới tính</th>
-                                                <th>Quê quán</th>
-                                                <th>Lớp</th>
-                                                <th>Khóa học</th>
-                                                <th>SĐT</th>
-                                                <th>Chức năng</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <% for(let i=0; i < dataHV.length; i++) { %>
-                                                <tr>
-                                                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                                    <td>
-                                                        <%= dataHV[i].id_HV %>
-                                                    </td>
-                                                    <td>
-                                                        <%= dataHV[i].tenHV %>
-                                                    </td>
-                                                    <td>
-                                                        <%= dataHV[i].ngaySinh %>
-                                                    </td>
-                                                    <td>
-                                                        <%= dataHV[i].gioiTinh %>
-                                                    </td>
-                                                    <td>
-                                                        <%= dataHV[i].queQuan %>
-                                                    </td>
-                                                    <td>
-                                                        <%= dataHV[i].tenLop %>
-                                                    </td>
-                                                    <td>
-                                                        <%= dataHV[i].tenKhoaHoc %>
-                                                    </td>
-                                                    <td>
-                                                        <%= dataHV[i].sdt %>
-                                                    </td>
-                                                    <% if(idDV==idDVofCB) {%>
-                                                        <td>
-                                                            <button class="btn btn-primary btn-sm trash" type="submit"
-                                                                title="Xóa"
-                                                                onclick="deleteRow('<%= dataHV[i].id_HV %>')"
-                                                                style="margin-left: 5px; margin-right: 5px;"><i
-                                                                    class="fas fa-trash-alt"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary btn-sm edit" type="button"
-                                                                onclick="openEditModal('<%= dataHV[i].id_HV %>','<%= dataHV[i].tenHV %>','<%= dataHV[i].ngaySinh %>','<%= dataHV[i].gioiTinh %>','<%= dataHV[i].queQuan %>','<%= dataHV[i].tenLop %>','<%= idDV %>','<%= dataHV[i].sdt %>','<%= dataHV[i].tenKhoaHoc %>')"
-                                                                title="Sửa" id="show-emp" data-toggle="modal"
-                                                                data-target="#ModalUP"><i
-                                                                    class="fas fa-edit"></i></button>
 
-                                                        </td>
-                                                        <% }%>
-                                                </tr>
-                                                <% } %>
-                                        </tbody>
-                                    </table>
                                 </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-hover table-bordered" id="sampleTable">
+                            <thead>
+                                <tr>
+                                    <th width="10"><input type="checkbox" id="all"></th>
+                                    <th>Mã học viên</th>
+                                    <th>Tên học viên</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Giới tính</th>
+                                    <th>Quê quán</th>
+                                    <th>Lớp</th>
+                                    <th>Khóa học</th>
+                                    <th>SĐT</th>
+                                    <th>Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let i=0; i < dataHV.length; i++) { %>
+                                    <tr>
+                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                                        <td>
+                                            <%= dataHV[i].id_HV %>
+                                        </td>
+                                        <td>
+                                            <%= dataHV[i].tenHV %>
+                                        </td>
+                                        <td>
+                                            <%= dataHV[i].ngaySinh %>
+                                        </td>
+                                        <td>
+                                            <%= dataHV[i].gioiTinh %>
+                                        </td>
+                                        <td>
+                                            <%= dataHV[i].queQuan %>
+                                        </td>
+                                        <td>
+                                            <%= dataHV[i].tenLop %>
+                                        </td>
+                                        <td>
+                                            <%= dataHV[i].tenKhoaHoc %>
+                                        </td>
+                                        <td>
+                                            <%= dataHV[i].sdt %>
+                                        </td>
+                                        <% if(idDV==idDVofCB) {%>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm trash" type="submit" title="Xóa"
+                                                    onclick="deleteRow('<%= dataHV[i].id_HV %>')"
+                                                    style="margin-left: 5px; margin-right: 5px;"><i
+                                                        class="fas fa-trash-alt"></i>
+                                                </button>
+                                                <button class="btn btn-primary btn-sm edit" type="button"
+                                                    onclick="openEditModal('<%= dataHV[i].id_HV %>','<%= dataHV[i].tenHV %>','<%= dataHV[i].ngaySinh %>','<%= dataHV[i].gioiTinh %>','<%= dataHV[i].queQuan %>','<%= dataHV[i].tenLop %>','<%= idDV %>','<%= dataHV[i].sdt %>','<%= dataHV[i].tenKhoaHoc %>')"
+                                                    title="Sửa" id="show-emp" data-toggle="modal"
+                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-5">
-                                        <div class="dataTables_info" id="sampleTable_info" role="status"
-                                            aria-live="polite">Hiện
-                                            1 đến 10 của 16
-                                            danh mục</div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-7">
-                                        <div class="dataTables_paginate paging_simple_numbers" id="sampleTable_paginate"
-                                            style="margin-left: 430px;">
-                                            <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled"
-                                                    id="sampleTable_previous"><a href="#" aria-controls="sampleTable"
-                                                        data-dt-idx="0" tabindex="0" class="page-link">Lùi</a></li>
-                                                <li class="paginate_button page-item active"><a href="#"
-                                                        aria-controls="sampleTable" data-dt-idx="1" tabindex="0"
-                                                        class="page-link">1</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="sampleTable" data-dt-idx="2" tabindex="0"
-                                                        class="page-link">2</a></li>
-                                                <li class="paginate_button page-item next" id="sampleTable_next"><a
-                                                        href="#" aria-controls="sampleTable" data-dt-idx="3"
-                                                        tabindex="0" class="page-link">Tiếp</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                            </td>
+                                            <% }%>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-sm-12 col-md-5">
+                            <div class="dataTables_info" id="sampleTable_info" role="status" aria-live="polite">Hiện
+                                1 đến 10 của 16
+                                danh mục</div>
+                        </div>
+                        <div class="col-sm-12 col-md-7">
+                            <div class="dataTables_paginate paging_simple_numbers" id="sampleTable_paginate"
+                                style="margin-left: 430px;">
+                                <ul class="pagination">
+                                    <li class="paginate_button page-item previous disabled" id="sampleTable_previous"><a
+                                            href="#" aria-controls="sampleTable" data-dt-idx="0" tabindex="0"
+                                            class="page-link">Lùi</a></li>
+                                    <li class="paginate_button page-item active"><a href="#" aria-controls="sampleTable"
+                                            data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                    <li class="paginate_button page-item "><a href="#" aria-controls="sampleTable"
+                                            data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                                    <li class="paginate_button page-item next" id="sampleTable_next"><a href="#"
+                                            aria-controls="sampleTable" data-dt-idx="3" tabindex="0"
+                                            class="page-link">Tiếp</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
+
             </div>
+        </div>
         </div>
 
     </main>
@@ -447,7 +448,44 @@ MODAL
     <script src="../doc/js/plugins/pace.min.js"></script>
     <!--===============================================================================================-->
     <script type="text/javascript" src="../doc/js/plugins/chart.js"></script>
-    <script src="../"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function postData(id_DV) {
+            // var tuTK = $('#searchInput').val();
+            var tuTK = document.getElementById("tuKhoa").value;
+            var idDV = id_DV;
+
+            $.ajax({
+                type: 'POST',
+                url: '/timKiemHV', // Đổi endpoint thành đúng với máy chủ của bạn
+                data: { tuTK: tuTK, idDV: idDV },
+                success: function (data) {
+                    console.log('Dữ liệu đã được post thành công!', data);
+
+                    // Xóa dữ liệu hiện tại của bảng
+                    $('#sampleTable tbody').empty();
+
+                    // Thêm dữ liệu mới từ máy chủ vào bảng
+                    for (var i = 0; i < data.length; i++) {
+                        $('#sampleTable tbody').append('<tr>' +
+                            '<td width="10"><input type="checkbox" name="check1" value="1"></td>' +
+                            '<td>' + data[i].id_HV + '</td>' +
+                            '<td>' + data[i].tenHV + '</td>' +
+                            '<td>' + data[i].ngaySinh + '</td>' +
+                            '<td>' + data[i].gioiTinh + '</td>' +
+                            '<td>' + data[i].queQuan + '</td>' +
+                            '<td>' + data[i].tenLop + '</td>' +
+                            '<td>' + data[i].tenKhoaHoc + '</td>' +
+                            '<td>' + data[i].sdt + '</td>' +
+                            '</tr>');
+                    }
+                },
+                error: function (error) {
+                    console.error('Lỗi khi post dữ liệu: ', error);
+                }
+            });
+        }
+    </script>
     <!--===============================================================================================-->
     <script type="text/javascript">
         //Thời Gian

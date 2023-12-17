@@ -89,6 +89,8 @@ const initWebRoute = (app) => {
     router.post('/updateTaiKhoan', homeController.updateTaiKhoan);
     router.post('/deleteTaiKhoan', homeController.deleteTaiKhoan);
 
+    router.post('/timKiemHV', homeController.timKiemHV);
+
 
 
     return app.use('/', router)

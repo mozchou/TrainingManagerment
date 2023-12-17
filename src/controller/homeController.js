@@ -1909,6 +1909,31 @@ let deleteTaiKhoan = async (req, res) => {
     res.json({ success: true, message: 'Xóa thành công' });
 }
 
+let timKiemHV = async (req, res) => {
+    try {
+        let { tuTK, idDV } = req.body;
+        console.log(req.body);
+
+        await sql.connect(dbConfig);
+
+        var sqlrequest = new sql.Request();
+        let result = await sqlrequest.query(`exec TimKiemHV @tuTK=N'%${tuTK}%', @id_DV = '${idDV}'`);
+
+        // Đóng kết nối
+        await sql.close();
+        console.log(result);
+
+        const searchData = result.recordsets[0];
+        console.log(searchData)
+
+        res.json(searchData);
+    } catch (error) {
+        console.error('Lỗi khi thực hiện truy vấn SQL:', error);
+        res.status(500).json({ error: 'Lỗi khi xử lý yêu cầu tìm kiếm.' });
+    }
+};
+
+
 module.exports = {
-    getLogin, login, getHomepage, getDetailTrungDoan, getDetailTieuDoan, getdsDV, createDV, updateDV, deleteDV, getdsCB, createCB, updateCB, deleteCanBo, getDVCapDuoi, createDVCapDuoi, updateDVCapDuoi, getdsHVtheoKhoaHoc, getdsHVtheoDonVi, getdsKhoaHoc, createKhoaHoc, updateKhoaHoc, getdsTieuDoan, getdsDaiDoi, createHVtheoDonVi, updateHVtheoDonVi, deleteHVtheoDonVi, getdsCapDuoi, getdsChungLoai, createChungLoai, updateChungLoai, deleteChungLoai, getdsTTB, createTTB, updateTTB, deleteTTB, getdsBienChe, createBienCheTTB, updateBienCheTTB, deleteBienCheTTB, getdsMonHoc, createMonHoc, updateMonHoc, getdsBaiHoc, createBaiHoc, updateBaiHoc, getKHHLTrungDoan, createKHHLTrungDoan, updateKHHLTrungDoan, getKHHLTieuDoan, createKHHLTieuDoan, updateKHHLTieuDoan, getKHHLCapTren, getKHHLdsCapDuoi, getKHHLDaiDoi, createKHHLDaiDoi, updateKHHLDaiDoi, getKQHL, getdsDonVitheoMonHoc, getNhapDiem, nhapDiemKQHL, getdsBuoiHoc, getdsDiemDanh, DiemDanh, getQuanLyTaiKhoan, updateTaiKhoan, createTaiKhoan, deleteTaiKhoan
+    getLogin, login, getHomepage, getDetailTrungDoan, getDetailTieuDoan, getdsDV, createDV, updateDV, deleteDV, getdsCB, createCB, updateCB, deleteCanBo, getDVCapDuoi, createDVCapDuoi, updateDVCapDuoi, getdsHVtheoKhoaHoc, getdsHVtheoDonVi, getdsKhoaHoc, createKhoaHoc, updateKhoaHoc, getdsTieuDoan, getdsDaiDoi, createHVtheoDonVi, updateHVtheoDonVi, deleteHVtheoDonVi, getdsCapDuoi, getdsChungLoai, createChungLoai, updateChungLoai, deleteChungLoai, getdsTTB, createTTB, updateTTB, deleteTTB, getdsBienChe, createBienCheTTB, updateBienCheTTB, deleteBienCheTTB, getdsMonHoc, createMonHoc, updateMonHoc, getdsBaiHoc, createBaiHoc, updateBaiHoc, getKHHLTrungDoan, createKHHLTrungDoan, updateKHHLTrungDoan, getKHHLTieuDoan, createKHHLTieuDoan, updateKHHLTieuDoan, getKHHLCapTren, getKHHLdsCapDuoi, getKHHLDaiDoi, createKHHLDaiDoi, updateKHHLDaiDoi, getKQHL, getdsDonVitheoMonHoc, getNhapDiem, nhapDiemKQHL, getdsBuoiHoc, getdsDiemDanh, DiemDanh, getQuanLyTaiKhoan, updateTaiKhoan, createTaiKhoan, deleteTaiKhoan, timKiemHV
 }
